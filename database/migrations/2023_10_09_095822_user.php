@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('password',100);
             $table->string('address',100)->nullable();
             $table->string('phone',13)->nullable();
+            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('role')->default(1);
 
         });
     }
