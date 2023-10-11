@@ -22,14 +22,14 @@
                 <span class="icon text-white-50">
                     <i class="fas fa-check"></i>
                 </span>
-                <span class="text">thông báo thành công</span>
+                <span class="text">Thông báo thành công</span>
 
             </a>
             <a href="#" class="btn btn-danger btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-check"></i>
                 </span>
-                <span class="text">thông báo không thành công</span>
+                <span class="text">Thông báo không thành công</span>
 
             </a>
              @endif

@@ -13,7 +13,7 @@ class AdminController extends Controller
     }
     public function list_client(){
 
-        return view('/admin/list-client',compact('mytime'));
+        return view('/admin/list-client');
     }
     public function list_post(){
         return view('/admin/list-post');
