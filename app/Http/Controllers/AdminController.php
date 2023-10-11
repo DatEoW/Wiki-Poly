@@ -16,7 +16,8 @@ class AdminController extends Controller
         return view('/admin/list-client',compact('mytime'));
     }
     public function list_post(){
-        return view('/admin/list-post');
+
+        
     }
     public function list_ncc(){
         return view('/admin/list-ncc');
