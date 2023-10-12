@@ -17,6 +17,7 @@ Route::prefix('admin')->group(function(){
     Route::get('list-client',[AdminController::class,'list_client']);
     Route::prefix('list-post')->group(function(){
         Route::get('/',[AdminPostController::class,'list_post']);
+        Route::post('/',[AdminPostController::class,'list_post']);
         Route::get('add',[AdminPostController::class,'add_post'])->name('post.add');
         Route::post('add',[AdminPostController::class,'add_post'])->name('post.store');
         Route::get('edit/{id}',[AdminPostController::class,'edit_post'])->name('post.edit');

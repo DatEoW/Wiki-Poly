@@ -1,5 +1,23 @@
 @extends('admin.layout')
 @section('container')
+<style>
+
+    #search{
+        width: 20%;
+        display:flex;
+        margin-bottom: 20px;
+        /* justify-content: flex-end; */
+    }
+    .input-group {
+        margin-bottom: 10px; /* Điều chỉnh khoảng cách giữa input và button */
+    }
+
+    .btn {
+        /* Tùy chỉnh kiểu dáng của button */
+
+    }
+
+</style>
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -7,7 +25,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="{{route('post.add')}}" class="btn btn-success btn-icon-split">
+            <a href="{{route('post.add')}}" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                 <i class="fa-solid fa-square-plus"></i>
                 </span>
@@ -32,8 +50,20 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+               <table class="table table-bordered"  width="100%" cellspacing="0"> 
+                   <!--   //id="dataTable" -->
+                   <form action="{{ url('/admin/list-post') }}" method="post">
+                        @csrf
+                        <div class="input-group">
+                            <input type="search" name="search" class="form-control" id="search" placeholder="Tìm kiếm...">
+                            <div class="input-group-append">
+                                <button style="height: 39px;" type="submit" class="btn btn-primary">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                   <thead>  
                         <tr>
                             <th>Tiêu Đề</th>
                             <th>Loại Tin</th>
@@ -94,5 +124,15 @@
     </div>
 
 </div>
-
+<script>
+    $(document).ready(function () {
+        // Bắt sự kiện khi phím Enter được nhấn trong trường nhập liệu
+        $('#search').keypress(function (e) {
+            if (e.which === 13) { // Kiểm tra nếu phím là Enter
+                e.preventDefault(); // Ngăn chặn hành động mặc định của nút Enter
+                $('#searchForm').submit(); // Gửi biểu mẫu
+            }
+        });
+    });
+</script>
 @endsection

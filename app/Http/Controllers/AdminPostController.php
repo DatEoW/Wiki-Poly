@@ -13,10 +13,18 @@ use Carbon\Carbon;
 
 class AdminPostController extends Controller
 {
-    public function list_post(){
-        $post = Post::all();
-        return view('/admin/list-post',compact('post'));
+    public function list_post(Request $request){
+        $keyword = $request->input('search');
+        if ($keyword) {
+            $post = Post::where('title', 'like', "%$keyword%")
+                ->orWhere('content', 'like', "%$keyword%")
+                ->get();
+        } else {
+            $post = Post::all();
+        }
+        return view('/admin/list-post', compact('post'));
     }
+    
     public function add_post(Request $request){
         if($request->isMethod('post')){
             $post = new Post();

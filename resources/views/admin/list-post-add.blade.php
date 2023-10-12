@@ -7,7 +7,7 @@
     <div class="card-body">
         <!-- ... other content ... -->
 
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered shadow p-3 mb-5 bg-white rounded" id="dataTable" width="100%" cellspacing="0">
             <!-- ... other content ... -->
                 <tbody>
                     <!-- ... other content ... -->
