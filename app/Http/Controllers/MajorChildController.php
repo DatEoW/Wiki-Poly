@@ -3,27 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\MajorModel as Major;
 use App\Models\MajorChildModel as MajorChild;
+use App\Models\MajorModel as Major;
 use Illuminate\Support\Facades\Session;
 
-class MajorController extends Controller
+class MajorChildController extends Controller
 {
     public function index()
     {
-        $major = Major::all();
-        return view('admin.major_list',compact('major'));
+        $majorC = MajorChild::all();
+        return view('admin.major_child_list',compact('majorC'));
+    }
+
+    public function majorP($id){
+        $major = Major::find($id);
+        if($major){
+            return $major->name;
+        }
+        return false;
     }
 
     public function create()
     {
-        return view('admin.major_create');
+        return view('admin.major_child_create');
     }
 
     public function store(Request $request)
     {
         $arr = $request->all();
-        $major = new Major();
+        $major = new MajorChild();
         $major->name = $arr['name'];
         $major->hidden = $arr['hidden'];
         $major->slug = ($request->has('slug'))? $arr['slug']:"";
@@ -31,7 +39,6 @@ class MajorController extends Controller
         $major->save();
         Session::flash('iconMessage', 'success');
         return redirect('admin.major_list')->with('message', 'Thêm mới thành công!');
-
     }
 
     public function show(string $id)
@@ -39,15 +46,15 @@ class MajorController extends Controller
         //
     }
 
-    public function edit(Request $request, string $id)
+    public function edit(Request $request,string $id)
     {
-        $major = Major::find($id);
-        if ($major==null) {
+        $majorC = MajorChild::find($id);
+        if ($majorC==null) {
             $request->session();
             Session::flash('iconMessage', 'info');
-            return redirect('admin.major_list')->with('message', 'Không tồn tại ngành này');
+            return redirect('admin.major_child_list')->with('message', 'Không tồn tại ngành');
         }
-        return view("admin.major_edit", compact('major'));
+        return view("admin.major_child_edit", compact('majorC'));
     }
 
     public function update(Request $request, string $id)
@@ -55,31 +62,33 @@ class MajorController extends Controller
         $arr = $request->post();
         $name = ($request->has('name'))? $arr['name']:"";
         $slug = ($request->has('slug'))? $arr['slug']:"";
-        $status = ($request->has('hidden'))? (int)$arr['hidden']:"0";
-        $major = Major::find($id);
-        if ($major ==null) {
+        $status = ($request->has('status'))? (int)$arr['status']:"0";
+        $idMajorP = ($request->has('major'))? $arr['major'] : " ";
+        $majorC = MajorChild::find($id);
+        if ($majorC ==null) {
             $request->session();
             Session::flash('iconMessage', 'info');
-            return redirect('admin.major_list')->with('message', 'Không tồn tại ngành học này!');;
+            return redirect('admin.major_child_list')->with('message', 'Không tồn tại ngành');;
         }
-        $major->cate_slide_name = $name;
-        $major->cate_slide_slug = $slug;
-        $major->cate_slide_hidden = $status;
-        $major->save();
+
+        $majorC->name = $name;
+        $majorC->hidden = $status;
+        $majorC->slug = $slug;
+        $majorC->id_major = $idMajorP;
+        $majorC->save();
         Session::flash('iconMessage', 'success');
-        return redirect('admin.major_list')->with('message', 'Chỉnh sửa ngành thành công!');
+        return redirect('admin.major_child_list')->with('message', 'Chỉnh sửa thành công');
     }
 
-   
     public function destroy(Request $request,string $id)
     {
-        $major = Major::find($id);
-        if ($major==null) {
+        $majorC = Major::find($id);
+        if ($majorC==null) {
             $request->session();
             Session::flash('iconMessage', 'info');
             redirect()->back()->with('message', 'Không tồn tại ngành học!');
         }
-        $major->delete();
+        $majorC->delete();
         Session::flash('iconMessage', 'success');
         return redirect('admin.major_list')->with('message', 'Xóa thành công');
     }
