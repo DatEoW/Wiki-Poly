@@ -33,22 +33,6 @@
                                 <label for="img">Ảnh:</label>
                                 <input type="text" class="form-control" id="img" name="img" value="">
                             </div>
-                            <div class="form-group">
-                                <label for="slug">Slug:</label>
-                                <input type="text" class="form-control" id="slug" name="slug" value="">
-                            </div>
-                            <div>
-                                <label for="hot">Nổi Bật:</label>
-                                <input type="radio" id="hot" name="hot" value="1">
-                                <label for="hot">Bình Thường:</label>
-                                <input type="radio" id="hot" name="hot" value="0">
-                            </div>
-                            <div>
-                                <label for="hidden">Ẩn:</label>
-                                <input type="radio" id="hidden" name="hidden" value="1">
-                                <label for="hidden">Hiện:</label>
-                                <input type="radio" id="hidden" name="hidden" value="0">
-                            </div>
                             <div>
                                 <label for="id_user">ID User:</label>
                                 <input type="text" class="form-control" id="id_user" name="id_user">

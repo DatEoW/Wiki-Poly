@@ -24,17 +24,13 @@ class AdminPostController extends Controller
         }
         return view('/admin/list-post', compact('post'));
     }
-    
     public function add_post(Request $request){
         if($request->isMethod('post')){
             $post = new Post();
             $post->title = $request->title;
             $post->summarize = $request->summarize;
-            $post->content = $request->content;
-            $post->slug = $request->slug;
+            $post->content = $request->content;   
             $post->img = $request->img;
-            $post->hot = $request->hot;
-            $post->hidden = $request->hidden;
             $post->id_user = $request->id_user;
             $post->id_major = $request->id_major;
             $post->id_cate = $request->id_cate;
@@ -51,10 +47,7 @@ class AdminPostController extends Controller
             $post->title = $request->title;
             $post->summarize = $request->summarize;
             $post->content = $request->content;
-            $post->slug = $request->slug;
             $post->img = $request->img;
-            $post->hot = $request->hot;
-            $post->hidden = $request->hidden;
             $post->views = $request->views;
             $post->id_user = $request->id_user;
             $post->id_major = $request->id_major;

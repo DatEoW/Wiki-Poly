@@ -24,8 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- data table -->
-    <link href="/ad/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <link href="/ad/vendor/data/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -632,10 +631,10 @@
     <script src="/ad/js/demo/chart-area-demo.js"></script>
     <script src="/ad/js/demo/chart-pie-demo.js"></script>
     <!--Page level database -->
-    <script src="/ad/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/ad/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/ad/vendor/data/jquery.dataTables.min.js"></script>
+    <script src="/ad/vendor/data/dataTables.bootstrap4.min.js"></script>
     <!-- Page level custom scripts -->
-    <script src="/ad/js/demo/datatables-demo.js"></script>
+    <script src="/ad/js/demo/data-demo.js"></script>
 
 </body>
 
