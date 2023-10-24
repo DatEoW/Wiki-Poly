@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/ad/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -648,7 +649,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="/ad/vendor/jquery/jquery.min.js"></script>
     <script src="/ad/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="/ad/vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -667,13 +668,16 @@
     <!-- Page level custom scripts -->
     <script src="/ad/js/demo/datatables-demo.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('#dataTable1').DataTable();
+        });
+    </script>
     <script type="text/javascript">
    
         function ChangeToSlug()
             {
-    
                 var slug;
-             
                 //Lấy text từ thẻ input title 
                 slug = document.getElementById("slug").value;
                 slug = slug.toLowerCase();
