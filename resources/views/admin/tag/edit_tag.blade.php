@@ -41,8 +41,9 @@
                         </div>
                         <div class="col-12 col-md-9">
                             <select name="tag_hidden" id="select" class="form-control">
-                                <option value="0">Ẩn</option>
+                              
                                 <option value="1">Hiện</option>
+                                <option value="0">Ẩn</option>
                             </select>
                         </div>
                     </div>

@@ -41,7 +41,7 @@
                         <div class="col-12 col-md-9">
                             <select name="category_hidden" id="select" class="form-control">
                                 <option value="1">Hiện</option>      
-                                <option value="0">Ẩn1</option>
+                                <option value="0">Ẩn</option>
                                                  
                             </select>
                         </div>
