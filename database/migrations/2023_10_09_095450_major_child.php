@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug',100);
             $table->integer('id_major')->unsigned();
             $table->foreign('id_major')->references('id')->on('major')->onUpdate('cascade')->onDelete('restrict');
+            $table->softDeletes();
         });
     }
 

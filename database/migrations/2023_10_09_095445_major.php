@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name',50);
             $table->tinyInteger('hidden')->default(1);
             $table->string('slug',100);
+            $table->softDeletes();
         });
     }
 
