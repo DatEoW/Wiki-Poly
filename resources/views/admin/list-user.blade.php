@@ -6,7 +6,7 @@
     <h1 class="h3 mb-2 text-gray-800">Danh Sách Khach Hang</h1>
 
 
-    {{-- <!-- DataTales Example -->
+    {{-- {{-- <!-- DataTales Example --> --}}
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             @if (session('status'))
@@ -16,9 +16,9 @@
                 </span>
                 <span class="text">{{ session('status') }} {{ session('tieuDe') }}</span>
             </a>
-            {{-- @else --}}
+            @else
 
-            {{-- <a href="#" class="btn btn-success btn-icon-split">
+            <a href="#" class="btn btn-success btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-check"></i>
                 </span>
@@ -31,8 +31,8 @@
                 </span>
                 <span class="text">thông báo không thành công</span>
 
-            </a> --}}
-             {{-- @endif --}}
+            </a>
+             @endif
 
 
 
@@ -41,6 +41,7 @@
 
         </div>
         <div >
+        <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -54,6 +55,7 @@
                             <th>phone</th>
                             <th>Trạng Thái</th>                         
                             <th>Vai tro</th>
+                            <th>edit | delete</th>
                         </tr>
                         
                         
@@ -74,14 +76,15 @@
                         <td>{{$user->status}}</td>
                         <td>{{$user->role}}</td>
                         <td>
-                            <a href="/user/update/{{ $user->id }}">Update</a> <br> 
+                            <a href="/user/update/{{ $user->id }}">Update</a> <br>
                             <a href="/user/delete/{{ $user->id }}">Delete</a>
-                        <td>
+                        </td>
                     </tr>
                         @endforeach
 
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>

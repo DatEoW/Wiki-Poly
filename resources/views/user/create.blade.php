@@ -1,6 +1,8 @@
 @extends('admin.layout')
 @section('container')
 <h2>Add User</h2>
+<div class="card-body">
+    <div class="table-responsive">
 <form method="post" >
     {{ csrf_field() }}
     <div class="form-group">
@@ -41,5 +43,6 @@
     </div>
     {{-- @include('partials.formerrors') --}}
 </form>
-
+    </div>
+</div>
 @endsection
