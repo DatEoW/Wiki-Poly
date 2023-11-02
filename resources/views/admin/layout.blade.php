@@ -102,9 +102,26 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            {{-- <div class="sidebar-heading">
                 Đợi cập nhật
-            </div>
+            </div> --}}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ url('/admin/add-post/') }}"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tạo Tin Mới</span>
+                </a>
+                {{-- <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Danh sách:</h6>
+                        <a class="collapse-item" href="{{ url('/admin/list-client/') }}">Khách Hàng</a>
+                        <a class="collapse-item" href="{{ url('/admin/list-ncc/') }}">Nhà Cung Cấp</a>
+                        <a class="collapse-item" href="{{ url('/admin/list-reg/') }}">Đăng Ký</a>
+                        <a class="collapse-item" href="{{ url('/admin/list-post/') }}">Tin</a>
+                    </div>
+                </div> --}}
+            </li>
 
             {{-- <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">

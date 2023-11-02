@@ -20,4 +20,8 @@ Route::prefix('admin')->group(function(){
     Route::get('list-profit-day',[AdminController::class,'list_profit_day']);
     Route::get('list-profit-month',[AdminController::class,'list_profit_month']);
 
+    Route::get('add-post',[AdminController::class,'add_post_form']);
+    Route::post('/upload',[AdminController::class,'uploadimage'])->name('ckeditor.upload');
+    Route::post('add-post',[AdminController::class,'add_post']);
+
 });
