@@ -12,29 +12,35 @@ class AdminController extends Controller
 
         return view('/admin/index');
     }
-    public function list_client(){
+    public function list_user(){
 
-        return view('/admin/list-client');
+        return view('/admin/list-user');
     }
     public function list_post(){
         return view('/admin/list-post');
     }
-    public function list_ncc(){
-        return view('/admin/list-ncc');
+    public function list_categories(){
+        return view('/admin/list-category');
     }
-    public function list_reg(){
-        return view('/admin/list-reg');
+    public function list_major(){
+        return view('/admin/list-major');
     }
-    public function list_profit_day(){
-        return view('/admin/list-profit-day');
+    public function list_major_child(){
+        return view('/admin/list-major-child');
     }
-    public function list_profit_month(){
-        return view('/admin/list-profit-day');
+    public function list_comment(){
+        return view('/admin/list-comment');
     }
+    public function list_tag(){
+        return view('/admin/list-tag');
+    }
+    public function list_post_by_tag(){
+        return view('/admin/list-post-by-tag');
+    }
+
     public function add_post_form(){
         return view('/admin/add-post');
     }
-
     public function uploadimage(Request $request)
     {
         if ($request->hasFile('upload')) {
@@ -49,9 +55,6 @@ class AdminController extends Controller
 
             return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
         }
-    }
-    public function add_post(){
-        
     }
 
 }
