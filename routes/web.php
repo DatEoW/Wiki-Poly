@@ -13,6 +13,13 @@ Route::get('/', function () {
 Use App\Http\Controllers\AdminController;
 Route::prefix('admin')->group(function(){
     Route::get('/',[AdminController::class,'index_admin']);
+
+    // post
+    Route::get('list-post',[AdminController::class,'list_post']);
+    Route::get('add-post',[AdminController::class,'add_post_form']);
+    Route::post('/upload',[AdminController::class,'uploadimage'])->name('ckeditor.upload');
+    Route::post('add-post',[AdminController::class,'add_post']);
+
     //user
 
     Route::get('list-user',[AdminController::class,'list_user']);
@@ -35,10 +42,5 @@ Route::prefix('admin')->group(function(){
     //post tag
     Route::get('list-post-by-tag',[AdminController::class,'list_post_by_tag']);
 
-    // post
-    Route::get('list-post',[AdminController::class,'list_post']);
-    Route::get('add-post',[AdminController::class,'add_post_form']);
-    Route::post('/upload',[AdminController::class,'uploadimage'])->name('ckeditor.upload');
-    Route::post('add-post',[AdminController::class,'add_post']);
 
 });
