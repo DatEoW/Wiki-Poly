@@ -22,14 +22,14 @@
                 <span class="icon text-white-50">
                     <i class="fas fa-check"></i>
                 </span>
-                <span class="text">thông báo thành công</span>
+                <span class="text">Thông báo thành công</span>
 
             </a>
             <a href="#" class="btn btn-danger btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-check"></i>
                 </span>
-                <span class="text">thông báo không thành công</span>
+                <span class="text">Thông báo không thành công</span>
 
             </a>
              @endif
@@ -64,38 +64,41 @@
                         </tr>
                     </tfoot>
                     <tbody>
-
-                        <td>Tiêu Đề</td>
-                        <td>Loại Tin</td>
-                        <td>Nội Dung</td>
-                        <td><p><a href="" class="btn btn-secondary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-eye" style="font-size: 14px"></i>
-                            </span>
-                            <span class="text" style="width:120px">Xem</span>
-                        </a></p></td>
-                        <td>Ngày Tạo</td>
-                        <td>
-                                <p><a href="" class="btn btn-primary btn-icon-split">
+                        <tr>
+                            <td>Tiêu Đề</td>
+                            <td>Loại Tin</td>
+                            <td>Nội Dung</td>
+                            <td><p><a href="" class="btn btn-secondary btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-eye" style="font-size: 14px"></i>
+                                </span>
+                                <span class="text" style="width:120px">Xem</span>
+                            </a></p></td>
+                            <td>Ngày Tạo</td>
+                            <td>
+                                    <p><a href="" class="btn btn-primary btn-icon-split">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-eye" style="font-size: 14px"></i>
+                                                </span>
+                                                <span class="text" style="width:120px" >Đang Hiện</span>
+                                            </a></p>
+                                    <p><a href=" "onclick="return confirm('Bạn có chắc muốn bỏ vào thùng rác?')" class="btn btn-warning btn-icon-split">
                                             <span class="icon text-white-50">
-                                                <i class="fas fa-eye" style="font-size: 14px"></i>
+                                                <i class="fas fa-trash" ></i>
                                             </span>
-                                            <span class="text" style="width:120px" >Đang Hiện</span>
+                                            <span class="text" style="width:120px">Thùng Rác</span>
+                                        </a>
+                                    </p>
+                                        <p><a href="" class="btn btn-info btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-edit" style="font-size: 14px"></i>
+                                            </span>
+                                            <span class="text" style="width:120px">Cập nhật</span>
                                         </a></p>
-                                <p><a href=" "onclick="return confirm('Bạn có chắc muốn bỏ vào thùng rác?')" class="btn btn-warning btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash" ></i>
-                                        </span>
-                                        <span class="text" style="width:120px">Thùng Rác</span>
-                                    </a>
-                                </p>
-                                    <p><a href="" class="btn btn-info btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-edit" style="font-size: 14px"></i>
-                                        </span>
-                                        <span class="text" style="width:120px">Cập nhật</span>
-                                    </a></p>
-                        </td>
+                                </td>
+                        </tr>
+                        
+
                     </tbody>
                 </table>
             </div>

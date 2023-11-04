@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('tag', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->timestamps();
-            $table->string('name',50);
+            $table->string('name',255);
             $table->tinyInteger('hidden')->default(1);
-            $table->string('slug',100);
+            $table->string('slug',255);
         });
     }
 

@@ -16,11 +16,11 @@ return new class extends Migration
 
             $table->timestamps();
             $table->integer('id_post')->unsigned();
-            $table->integer('id_major')->unsigned();
-            $table->primary(['id_post', 'id_major']);
+            $table->integer('id_tag')->unsigned();
+            $table->primary(['id_post', 'id_tag']);
             $table->foreign('id_post')->references('id')->on('post')->onUpdate('cascade')->onDelete('restrict');
 
-            $table->foreign('id_major')->references('id')->on('major')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('id_tag')->references('id')->on('tag')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 

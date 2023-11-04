@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BeeSmart - Admin</title>
+    <title>Wiki -Admin</title></title>
 
     <!-- Custom fonts for this template-->
     <link href="/ad/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -38,10 +38,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/admin') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                   <img src="/ad/img/logo_bee.jpg" alt="">
+                <div class="sidebar-brand-icon">
+                   <img src="/ad/img/logo-admin.png" alt="">
                 </div>
-                <div class="sidebar-brand-text mx-3">Bee Smart <sup></sup></div>
+                {{-- <div class="sidebar-brand-text mx-3">Wiki Poly <sup></sup></div> --}}
             </a>
 
             <!-- Divider -->
@@ -90,10 +90,15 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Danh sách:</h6>
-                        <a class="collapse-item" href="{{ url('/admin/list-client/') }}">Khách Hàng</a>
-                        <a class="collapse-item" href="{{ url('/admin/list-ncc/') }}">Nhà Cung Cấp</a>
-                        <a class="collapse-item" href="{{ url('/admin/list-reg/') }}">Đăng Ký</a>
-                        <a class="collapse-item" href="{{ url('/admin/list-post/') }}">Tin</a>
+                        <a class="collapse-item" href="{{ route('list-post') }}">Bài Viết</a>
+                        <a class="collapse-item" href="{{ route('list-category') }}">Danh Mục</a>
+                        <a class="collapse-item" href="{{ route('list-tag') }}">Tag</a>
+                        <a class="collapse-item" href="{{ route('list-user') }}">Tài Khoản</a>
+                        <a class="collapse-item" href="{{ route('list-major') }}">Ngành Học</a>
+                        <a class="collapse-item" href="{{ route('list-major-child') }}">Chuyên Ngành Học</a>
+                        <a class="collapse-item" href="{{ route('list-comment') }}">Comment</a>
+
+
                     </div>
                 </div>
             </li>
@@ -102,9 +107,26 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            {{-- <div class="sidebar-heading">
                 Đợi cập nhật
-            </div>
+            </div> --}}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ url('/admin/add-post/') }}"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tạo Tin Mới</span>
+                </a>
+                {{-- <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Danh sách:</h6>
+                        <a class="collapse-item" href="{{ url('/admin/list-client/') }}">Khách Hàng</a>
+                        <a class="collapse-item" href="{{ url('/admin/list-ncc/') }}">Nhà Cung Cấp</a>
+                        <a class="collapse-item" href="{{ url('/admin/list-reg/') }}">Đăng Ký</a>
+                        <a class="collapse-item" href="{{ url('/admin/list-post/') }}">Tin</a>
+                    </div>
+                </div> --}}
+            </li>
 
             {{-- <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -338,29 +360,29 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Đạt</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Wiki</span>
                                 <img class="img-profile rounded-circle"
-                                    src="/ad/img/undraw_profile.svg">
+                                    src="/ad/img/logo.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Hồ Sơ
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
+                                    Cài Đặt
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    Hoạt Động
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Thoát
                                 </a>
                             </div>
                         </li>
@@ -379,7 +401,7 @@
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Thống Kê</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                            class="fas fa-download fa-sm text-white-50"></i> Tạo báo cáo</a>
                 </div>
 
                 <!-- Content Row -->
@@ -578,7 +600,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Được thiết kế bởi &copy; team wiki 2023</span>
                     </div>
                 </div>
             </footer>
