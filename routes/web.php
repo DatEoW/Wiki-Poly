@@ -6,11 +6,9 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\MajorChildController;
 
 use Illuminate\Support\Facades\Route;
-Use App\Http\Controllers\AdminController;
-Use App\Http\Controllers\UserController;
-use App\Models\User;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
-// Use App\Http\Controllers\SessionsController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,8 +28,8 @@ Route::prefix('admin')->group(function(){
 
     Route::get('list-user',[AdminController::class,'list_user'])->name('list-user');
 
-    //category
-    Route::get('list-category',[AdminController::class,'list_categories'])->name('list-category');
+    // //category
+    // Route::get('list-category',[AdminController::class,'list_categories'])->name('list-category');
 
     //major-child
     Route::get('list-major-child',[AdminController::class,'list_major_child'])->name('list-major-child');
@@ -39,15 +37,17 @@ Route::prefix('admin')->group(function(){
     //comment
     Route::get('list-comment',[AdminController::class,'list_comment'])->name('list-comment');
 
-    //tag
-    Route::get('list-tag',[AdminController::class,'list_tag'])->name('list-tag');
+    // //tag
+    // Route::get('list-tag',[AdminController::class,'list_tag'])->name('list-tag');
 
     //post tag
     Route::get('list-post-by-tag',[AdminController::class,'list_post_by_tag']);
 
 
 
-   // Route::post('/register', [RegisterController::class, 'CreateUser']);
+
+
+    //major nghi
     Route::resource('major',(MajorController::class));
     Route::get('/major-trashed', [MajorController::class, 'trashed'])->name('major.trashed');
     Route::get('/major/soft-delete/{id}', [MajorController::class, 'softDelete'])->name('major.softDelete');
@@ -56,7 +56,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/major/delete/{id}', [MajorController::class, 'forceDelete'])->name('major.delete');
 
 
-    // Route::get('list-major-child',[MajorChildController::class,'index']);
+    //majorC nghi
     Route::resource('majorC',(MajorChildController::class));
     Route::get('/majorC-trashed', [MajorChildController::class, 'trashed'])->name('majorC.trashed');
     Route::get('/majorC/soft-delete/{id}', [MajorChildController::class, 'softDelete'])->name('majorC.softDelete');
@@ -64,4 +64,23 @@ Route::prefix('admin')->group(function(){
     Route::get('/majorC-restore-all', [MajorChildController::class, 'restoreAll'])->name('majorC.restoreAll');
     Route::get('/majorC/delete/{id}', [MajorChildController::class, 'forceDelete'])->name('majorC.delete');
 
+
+     // Category -huu
+     Route::get('list-category', [CategoryController::class, 'list_category'])->name('list-category');
+     Route::get('add-category', [CategoryController::class, 'add_category']);
+     Route::post('save-category', [CategoryController::class, 'save_category']);
+     Route::get('edit-category/{id}', [CategoryController::class, 'edit_category']);
+     Route::get('delete-category/{id}', [CategoryController::class, 'delete_category']);
+     Route::post('update-category/{id}', [CategoryController::class, 'update_category']);
+     Route::get('unactive-category/{id}', [CategoryController::class, 'unactive_category']);
+     Route::get('active-category/{id}', [CategoryController::class, 'active_category']);
+     // Tag -huu
+     Route::get('list-tag', [TagController::class, 'list_tag'])->name('list-tag');
+     Route::get('add-tag', [TagController::class, 'add_tag']);
+     Route::post('save-tag', [TagController::class, 'save_tag']);
+     Route::get('edit-tag/{id}', [TagController::class, 'edit_tag']);
+     Route::get('delete-tag/{id}', [TagController::class, 'delete_tag']);
+     Route::post('update-tag/{id}', [TagController::class, 'update_tag']);
+     Route::get('unactive-tag/{id}', [TagController::class, 'unactive_tag']);
+     Route::get('active-tag/{id}', [TagController::class, 'active_tag']);
 });

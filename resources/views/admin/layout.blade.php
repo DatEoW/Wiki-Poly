@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/ad/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -63,20 +64,11 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa-solid fa-hand-holding-dollar"></i>
-                    <span>Doanh thu</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Doanh thu theo</h6>
-                        <a class="collapse-item" href="{{ url('/admin/list-profit-day/') }}">Ngày</a>
-                        <a class="collapse-item" href="{{ url('/admin/list-profit-month/') }}">Tháng </a>
-                    </div>
-                </div>
-            </li>
+            
+
+
+
+
 
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -640,7 +632,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="/ad/vendor/jquery/jquery.min.js"></script>
     <script src="/ad/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="/ad/vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -658,6 +650,46 @@
     <script src="/ad/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <!-- Page level custom scripts -->
     <script src="/ad/js/demo/datatables-demo.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#dataTable1').DataTable();
+        });
+    </script>
+    <script type="text/javascript">
+
+        function ChangeToSlug()
+            {
+                var slug;
+                //Lấy text từ thẻ input title
+                slug = document.getElementById("slug").value;
+                slug = slug.toLowerCase();
+                //Đổi ký tự có dấu thành không dấu
+                    slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+                    slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+                    slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+                    slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+                    slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+                    slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+                    slug = slug.replace(/đ/gi, 'd');
+                    //Xóa các ký tự đặt biệt
+                    slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+                    //Đổi khoảng trắng thành ký tự gạch ngang
+                    slug = slug.replace(/ /gi, "-");
+                    //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+                    //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+                    slug = slug.replace(/\-\-\-\-\-/gi, '-');
+                    slug = slug.replace(/\-\-\-\-/gi, '-');
+                    slug = slug.replace(/\-\-\-/gi, '-');
+                    slug = slug.replace(/\-\-/gi, '-');
+                    //Xóa các ký tự gạch ngang ở đầu và cuối
+                    slug = '@' + slug + '@';
+                    slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+                    //In slug ra textbox có id “slug”
+                document.getElementById('convert_slug').value = slug;
+            }
+
+        </script>
 
 </body>
 
