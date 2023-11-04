@@ -1,5 +1,10 @@
 <?php
 namespace App\Http\Controllers;
+
+
+use App\Http\Controllers\MajorController;
+use App\Http\Controllers\MajorChildController;
+
 use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\AdminController;
 Use App\Http\Controllers\UserController;
@@ -10,13 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', [UserController::class,'create']);
-Route::post('/register', [UserController::class,'store']);
 
-Route::get('/user/update/{id}', [UserController::class, 'edit']);
-Route::post('/user/update/{id}', [UserController::class, 'update']);
-
-Route::get('/user/delete/{id}', [UserController::class, 'delete']);
 
 Route::prefix('admin')->group(function(){
     Route::get('/',[AdminController::class,'index_admin']);
@@ -34,9 +33,6 @@ Route::prefix('admin')->group(function(){
     //category
     Route::get('list-category',[AdminController::class,'list_categories'])->name('list-category');
 
-    //major
-    Route::get('list-major',[AdminController::class,'list_major'])->name('list-major');
-
     //major-child
     Route::get('list-major-child',[AdminController::class,'list_major_child'])->name('list-major-child');
 
@@ -52,4 +48,20 @@ Route::prefix('admin')->group(function(){
 
 
    // Route::post('/register', [RegisterController::class, 'CreateUser']);
+    Route::resource('major',(MajorController::class));
+    Route::get('/major-trashed', [MajorController::class, 'trashed'])->name('major.trashed');
+    Route::get('/major/soft-delete/{id}', [MajorController::class, 'softDelete'])->name('major.softDelete');
+    Route::get('/major/restore/{id}', [MajorController::class, 'restore'])->name('major.restore');
+    Route::get('/major-restore-all', [MajorController::class, 'restoreAll'])->name('major.restoreAll');
+    Route::get('/major/delete/{id}', [MajorController::class, 'forceDelete'])->name('major.delete');
+
+
+    // Route::get('list-major-child',[MajorChildController::class,'index']);
+    Route::resource('majorC',(MajorChildController::class));
+    Route::get('/majorC-trashed', [MajorChildController::class, 'trashed'])->name('majorC.trashed');
+    Route::get('/majorC/soft-delete/{id}', [MajorChildController::class, 'softDelete'])->name('majorC.softDelete');
+    Route::get('/majorC/restore/{id}', [MajorChildController::class, 'restore'])->name('majorC.restore');
+    Route::get('/majorC-restore-all', [MajorChildController::class, 'restoreAll'])->name('majorC.restoreAll');
+    Route::get('/majorC/delete/{id}', [MajorChildController::class, 'forceDelete'])->name('majorC.delete');
+
 });

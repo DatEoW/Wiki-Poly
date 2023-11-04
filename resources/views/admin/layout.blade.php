@@ -94,7 +94,7 @@
                         <a class="collapse-item" href="{{ route('list-category') }}">Danh Mục</a>
                         <a class="collapse-item" href="{{ route('list-tag') }}">Tag</a>
                         <a class="collapse-item" href="{{ route('list-user') }}">Tài Khoản</a>
-                        <a class="collapse-item" href="{{ route('list-major') }}">Ngành Học</a>
+                        <a class="collapse-item" href="{{ route('major.index') }}">Ngành Học</a>
                         <a class="collapse-item" href="{{ route('list-major-child') }}">Chuyên Ngành Học</a>
                         <a class="collapse-item" href="{{ route('list-comment') }}">Comment</a>
 
