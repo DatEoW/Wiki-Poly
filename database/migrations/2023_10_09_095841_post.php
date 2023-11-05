@@ -29,7 +29,7 @@ return new class extends Migration
             $table->integer('id_major_child')->unsigned()->nullable();
             $table->foreign('id_major_child')->references('id')->on('major_child')->onUpdate('cascade')->onDelete('restrict');
             $table->integer('id_cate')->unsigned();
-            $table->foreign('id_cate')->references('id')->on('categories')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('id_cate')->references('id')->on('category')->onUpdate('cascade')->onDelete('restrict');
 
 
 

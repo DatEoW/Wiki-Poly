@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades;
-
+use App\Models\Post;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
@@ -36,7 +37,11 @@ class AdminController extends Controller
     }
 
     public function add_post_form(){
-        return view('/admin/add-post');
+        $cate=DB::table('category')->get();
+        $major=DB::table('major')->get();
+        $majorC=DB::table('major_child')->get();
+
+        return view('/admin/add-post',compact('cate','major','majorC'));
     }
     public function uploadimage(Request $request)
     {
@@ -52,6 +57,14 @@ class AdminController extends Controller
 
             return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
         }
+    }
+    public function add_post(Request $request){
+
+        $input=$request->all();
+        $input['slug']= Str::of($input['title'])->slug('-');
+        $post=Post::create($input);
+        return view('/admin/list-post');
+
     }
 
     public function list_user(){

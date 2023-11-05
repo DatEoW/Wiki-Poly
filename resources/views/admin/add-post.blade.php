@@ -93,6 +93,10 @@
                         <label class="form-label">Danh Mục:</label>
                         <select name="id_cate" value="" class="form-control">
                             <option value="">--- Select ---</option>
+                            @foreach($cate as $key => $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
+
                         </select>
 
 
@@ -102,6 +106,9 @@
 
                         <select name="id_major" value="{{ old('id_brand') }}" class="form-control">
                             <option value="">--- Select ---</option>
+                            @foreach($major as $key => $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
 
 
                         </select>
@@ -113,8 +120,11 @@
                     <div class="form-group">
                         <label class="form-label">Chuyên Nghành Học:</label>
 
-                        <select name="id_brand" value="{{ old('id_brand') }}" class="form-control">
+                        <select name="id_major_child" value="{{ old('id_brand') }}" class="form-control">
                             <option value="">--- Select ---</option>
+                            @foreach($majorC as $key => $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
 
 
                         </select>
