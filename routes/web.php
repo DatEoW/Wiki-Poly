@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\MajorChildController;
-
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\AccountController;
+use Illuminate\Http\Request;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,13 +19,17 @@ Route::get('/', function () {
 
 
 Route::prefix('admin')->group(function(){
-    Route::get('/',[AdminController::class,'index_admin']);
+    Route::get('/',[AdminController::class,'index_admin'])->name('admin');
 
     // post
-    Route::get('list-post',[AdminController::class,'list_post'])->name('list-post');
-    Route::get('add-post',[AdminController::class,'add_post_form'])->name('add-post-form');
-    Route::post('/upload',[AdminController::class,'uploadimage'])->name('ckeditor.upload');
-    Route::post('add-post',[AdminController::class,'add_post'])->name('add-post-form');
+    Route::get('list-post',[PostController::class,'list_post'])->name('list-post');
+    Route::get('add-post',[PostController::class,'add_post_form'])->name('add-post-form');
+    Route::post('/upload',[PostController::class,'uploadimage'])->name('ckeditor.upload');
+    Route::post('add-post',[PostController::class,'add_post'])->name('add-post-form');
+    Route::get('edit-post{id}',[PostController::class,'edit_post'])->name('edit-post');
+    Route::post('edit-post{id}',[PostController::class,'update_post'])->name('update-post');
+    Route::get('delete-post{id}',[PostController::class,'delete_post'])->name('delete-post');
+    Route::get('hidden-post{id}',[PostController::class,'hidden_post'])->name('hidden-post');
 
     //user
 
@@ -84,3 +91,10 @@ Route::prefix('admin')->group(function(){
      Route::get('unactive-tag/{id}', [TagController::class, 'unactive_tag']);
      Route::get('active-tag/{id}', [TagController::class, 'active_tag']);
 });
+Route::get('login',[AccountController::class,'login'])->name('login');
+Route::post('login',[AccountController::class,'login_']);
+Route::get('register',[AccountController::class,'register'])->name('register');
+Route::post('register',[AccountController::class,'register_']);
+Route::get('forgot-password1',[AccountController::class,'forgot_password'])->name('forgot-password');
+Route::post('forgot-password1',[AccountController::class,'forgot_password_'])->name('password.reset');
+Route::get('forgot-password',[AccountController::class,'reset_password'])->name('password.reset');

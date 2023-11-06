@@ -15,5 +15,5 @@ class Category extends Model
         'slug',
     ];
     protected $primaryKey = 'id';
-    protected $table = 'categories';
+    protected $table = 'category';
 }
