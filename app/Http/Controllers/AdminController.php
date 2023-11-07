@@ -15,7 +15,8 @@ class AdminController extends Controller
         return view('/admin/index');
     }
     public function list_post(){
-        return view('/admin/list-post');
+
+        
     }
     public function list_categories(){
         return view('/admin/list-category');
