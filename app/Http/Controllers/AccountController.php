@@ -16,7 +16,12 @@ class AccountController extends Controller
             'password' => $_POST['password'],
         ];
         if (\Auth::attempt($credentials)) {
-            return redirect('admin')->with('thongbao','Đăng nhập thành công');
+            // nếu role = 1 thì vào admin nếu role = 0 thì vào home
+            if(\Auth::user()->role == 0){
+                return redirect('account')->with('thongbao','Đăng nhập thành công');
+            }elseif(\Auth::user()->role == 1){
+                return redirect('admin')->with('thongbao','Đăng nhập thành công');
+            }
         }
         else{
             return redirect('login')->with('thongbao','Đăng nhập thất bại');
