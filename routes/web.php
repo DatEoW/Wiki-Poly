@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\MajorChildController;
-
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
@@ -12,7 +12,13 @@ use App\Http\Controllers\TagController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/admin/register', [UserController::class,'create']);
+Route::post('admin/register', [UserController::class,'store']);
 
+Route::get('/user/update/{id}', [UserController::class, 'edit']);
+Route::post('/user/update/{id}', [UserController::class, 'update']);
+
+Route::get('/user/delete/{id}', [UserController::class, 'delete']); 
 
 
 Route::prefix('admin')->group(function(){
