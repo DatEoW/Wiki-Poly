@@ -15,8 +15,8 @@ class AdminController extends Controller
         return view('/admin/index');
     }
     public function list_post(){
+        return view('/admin/list-post');
 
-        
     }
     public function list_categories(){
         return view('/admin/list-category');
@@ -64,7 +64,7 @@ class AdminController extends Controller
         $input=$request->all();
         $input['slug']= Str::of($input['title'])->slug('-');
         $post=Post::create($input);
-        return view('/admin/list-post');
+        return redirect('/admin/list-post');
 
     }
 
