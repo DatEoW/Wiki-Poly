@@ -47,13 +47,11 @@
 
         <div class="row col-12">
             <div class="col col-xl-6"><b>
-                    <h1>Thêm Tin</h1>
+                    <h1>Sửa Tin</h1>
                 </b></div>
             <div class="col col-xl-6 mt-2">
-                <a href=""><button class="button-34 btn-sm float-end" role="button"> Danh
+                <a href="{{ route('list-post') }}"><button class="button-34 btn-sm float-end" role="button"> Danh
                         sách sản phẩm</button></a>
-
-
             </div>
         </div>
     </div>
@@ -65,7 +63,7 @@
                     <div class="form-group">
                         <label class="form-label">Tên Tin:</label>
 
-                        <input type="text" name="title" value="" class="form-control" />
+                        <input type="text" name="title" value="{{$post->title}}"class="form-control" />
                         @error('name')
                             <small class="text-danger font-weight-bold">{{ $message }}</small>
                         @enderror
@@ -73,44 +71,34 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label ">Mô Tả:</label>
-                        <textarea name="content" id="contented" class="form-control" rows="10" cols="70"
-                            value=""></textarea>
-
-
+                        <textarea name="content" id="contented" class="form-control" rows="10" cols="70" >{{$post->content}}</textarea>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Hình Tin:</label>
-                        <input type="file" name="img" value="" class="form-control" id="url_imaged" />
+                        <input type="file" name="img" value="{{$post->img}}"
+                         class="form-control" id="url_imaged" />
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="form-label">Chú Thích:</label>
-                        <input type="text"  name="summarize" class="form-control" />
+                        <input type="text"  name="summarize" class="form-control" value="{{$post->summarize}}" />
 
                     </div>
                     <div class="form-group">
                         <label class="form-label">Danh Mục:</label>
                         <select name="id_cate" value="" class="form-control">
-                            <option value="">--- Select ---</option>
                             @foreach($cate as $key => $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
-
                         </select>
-
-
                     </div>
                     <div class="form-group">
                         <label class="form-label">Chuyên Nghành:</label>
-
                         <select name="id_major" value="{{ old('id_brand') }}" class="form-control">
-                            <option value="">--- Select ---</option>
-                            @foreach($major as $key => $data)
-                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @foreach ($major as $key => $data)
+                                <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
-
-
                         </select>
                         @error('id_brand')
                             <small class="text-danger font-weight-bold">{{ $message }}</small>
@@ -119,15 +107,11 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Chuyên Nghành Học:</label>
-
                         <select name="id_major_child" value="{{ old('id_brand') }}" class="form-control">
-                            <option value="">--- Select ---</option>
                             @foreach($majorC as $key => $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
-
-
-                        </select>
+                     </select>
                         @error('id_brand')
                             <small class="text-danger font-weight-bold">{{ $message }}</small>
                         @enderror
@@ -137,23 +121,30 @@
 
                    {{--  <div class="form-group">
                         <label class="form-label">Số Lượng:</label>
-
                         <input type="text" name="quantity" value="{{ old('quantity') }}" class="form-control" />
                         @error('quantity')
                             <small class="text-danger font-weight-bold">{{ $message }}</small>
                         @enderror
-
                     </div> --}}
                     <div class="form-group">
                         <label class="form-label">Trạng Thái:</label>
-
                         <div class="form-control">
+                            @if(isset($post->hidden) && $post->hidden == 1)
                             <label for="">
-                                <input type="radio" name="status" id="" value="1" checked> Hiện
+                                <input type="radio" name="hidden" id="" value="1" checked> Hiện
                             </label>
                             <label for="">
-                                <input type="radio" name="status" id="" value="0"> Ẩn
+                                <input type="radio" name="hidden" id="" value="0"> Ẩn
                             </label>
+                            @else
+                            <label for="">
+                                <input type="radio" name="hidden" id="" value="1"> Hiện
+                            </label>
+                            <label for="">
+                                <input type="radio" name="hidden" id="" value="0" checked> Ẩn
+                            </label>
+                            @endif
+
                         </div>
                         @error('status')
                             <small class="text-danger ">{{ $message }}</small>
@@ -165,7 +156,7 @@
             </div>
 
             <div class="text-start">
-                <input type="submit" class="btn btn-primary text-capitalize" value="Thêm Tin" />
+                <input type="submit" class="btn btn-primary text-capitalize" value="Sửa Tin" />
                 <button type="reset" class="btn btn-warning ml-2">Làm Mới</button>
             </div>
         </form>
