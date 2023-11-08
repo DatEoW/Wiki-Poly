@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Models\password_reset_tokens;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 class AccountController extends Controller
 {
     public function login(){
@@ -15,17 +18,18 @@ class AccountController extends Controller
             'email' => $_POST['email'],
             'password' => $_POST['password'],
         ];
-        if (\Auth::attempt($credentials)) {
+
+
+        if (Auth::attempt($credentials)) {
             // nếu role = 1 thì vào admin nếu role = 0 thì vào home
-            if(\Auth::user()->role == 0){
-                return redirect('account')->with('thongbao','Đăng nhập thành công');
-            }elseif(\Auth::user()->role == 1){
+
+
                 return redirect('admin')->with('thongbao','Đăng nhập thành công');
-            }
+
         }
-        else{
+
             return redirect('login')->with('thongbao','Đăng nhập thất bại');
-        }
+
     }
     public function register(){
         return view('admin.register');
@@ -39,7 +43,7 @@ class AccountController extends Controller
             };
         $user->name = $_POST['name'].' '.$_POST['lastname'];
         $user->email = $_POST['email'];
-        $user->password = \Hash::make($_POST['password']);
+        $user->password = $_POST['password'];
         $user->save();
         return redirect('login')->with('thongbao','Đăng ký thành công');
         }
@@ -55,18 +59,22 @@ class AccountController extends Controller
         $request->validate([
             'email' => 'required|email',
         ]);
-    
+
         $status = Password::sendResetLink($request->only('email'));
-    
+
         return $status === Password::RESET_LINK_SENT
             ? back()->with(['thongbao' => 'Đã gửi liên kết đặt lại mật khẩu vào email của bạn!'])
             : back()->withErrors(['email' => __($status)]);
-        
+
     }
     public function reset_password(Request $request){
         $token = bcrypt($request->token);
         dd($token);
         $email = $request->email;
         $password_reset_token = password_reset_tokens::where('email',$email)->first();
+    }
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

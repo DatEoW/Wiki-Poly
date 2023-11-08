@@ -22,7 +22,7 @@
             @endif
           <form method="post">
           @csrf
-            <div class="form-group">
+            <div class="form-group" action="{{ route('logingo') }}">
               <label for="email">Email</label>
               <input type="text" class="form-control" name="email" id="email" placeholder="Nhập email">
             </div>

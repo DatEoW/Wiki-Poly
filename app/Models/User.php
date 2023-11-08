@@ -16,14 +16,14 @@ class User extends Authenticatable implements MustVerifyEmail
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
-     * 
+     *
      */
-    protected $table = 'user';
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
-     * 
+     *
      */
     protected $fillable = [
         'name',

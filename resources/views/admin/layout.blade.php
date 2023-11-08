@@ -63,7 +63,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            
+
 
 
 
@@ -371,10 +371,14 @@
                                     Hoạt Động
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Thoát
-                                </a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="dropdown-item"  data-toggle="modal" >
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Đăng Xuất
+                                    </button>
+                                </form>
                             </div>
                         </li>
 

@@ -20,13 +20,13 @@ Route::get('/', function () {
 
 
 //chỉ có tài khoản đã đăng nhập mới được vào
-Route::group(['middleware' => 'checkUserRole'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/account', function () {
         return view('trangtestdangnhap');
     })->name('account');
 });
 // check tài khoản admin cấm vào user
-Route::group(['middleware' => 'checkAdminRole'], function () {
+Route::group(['middleware' => 'auth','checkAdminRole'], function () {
     Route::prefix('admin')->group(function () {
         Route::get('/', [AdminController::class,'index_admin'])->name('admin');
 
@@ -105,16 +105,13 @@ Route::group(['middleware' => 'checkAdminRole'], function () {
 
 // account
 Route::get('login',[AccountController::class,'login'])->name('login');
-Route::post('login',[AccountController::class,'login_']);
+Route::post('login',[AccountController::class,'login_'])->name('logingo');
 Route::get('register',[AccountController::class,'register'])->name('register');
 Route::post('register',[AccountController::class,'register_']);
 Route::get('forgot-password1',[AccountController::class,'forgot_password'])->name('forgot-password');
 Route::post('forgot-password1',[AccountController::class,'forgot_password_'])->name('password.reset');
 Route::get('forgot-password',[AccountController::class,'reset_password'])->name('password.reset');
-Route::get('logout', function () {
-    \Illuminate\Support\Facades\Auth::logout();
-    return redirect()->route('login');
-})->name('logout');
+Route::delete('logout',[AccountController::class,'logout'])->name('logout');
 
 // giao diện
 Route::get('404', function () {
