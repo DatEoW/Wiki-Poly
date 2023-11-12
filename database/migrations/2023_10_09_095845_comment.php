@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('id_post')->references('id')->on('post')->onUpdate('cascade')->onDelete('restrict');
             $table->integer('id_major')->unsigned();
             $table->foreign('id_major')->references('id')->on('major')->onUpdate('cascade')->onDelete('restrict');
+            $table->softDeletes();
         });
     }
 

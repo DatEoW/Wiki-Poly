@@ -86,6 +86,23 @@ class MajorChildController extends Controller
         return redirect(route('majorC.index'))->with('message', 'Chỉnh sửa thành công');
     }
 
+    public function unactive_majorC($id)
+    {
+        $majorC = MajorChild::find($id);
+        $majorC->hidden = 0;
+        $majorC->save();
+        Session::flash('iconMessage', 'success');
+        return redirect(route('majorC.index'))->with('message', 'Ẩn chuyên ngành thành công!');
+    }
+    public function active_majorC($id)
+    {
+        $majorC = MajorChild::find($id);
+        $majorC->hidden = 1;
+        $majorC->save();
+        Session::flash('iconMessage', 'success');
+        return redirect(route('majorC.index'))->with('message', 'Hiển thị chuyên ngành thành công!');
+    }
+
     public function destroy(Request $request,string $id)
     {
         $majorC = MajorChild::find($id);

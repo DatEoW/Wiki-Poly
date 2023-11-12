@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tag;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
 session_start();
@@ -54,20 +54,33 @@ class TagController extends Controller
         return redirect('admin/list-tag');
     }
 
-    public function delete_tag($id)
+    // public function delete_tag($id)
+    // {
+    //     $tag = Tag::find($id);
+    //     if ($tag) {
+    //         $tag->delete();
+    //         session(['status' => 'Xóa thành công', 'tieuDe' => 'Deleted']);
+    //     }
+    //     return redirect('admin/list-tag');
+    // }
+
+    public function destroy(Request $request,string $id)
     {
         $tag = Tag::find($id);
-        if ($tag) {
-            $tag->delete();
-            session(['status' => 'Xóa thành công', 'tieuDe' => 'Deleted']);
+        if ($tag == null) {
+            $request->session();
+            Session::flash('iconMessage', 'info');
+            redirect()->back()->with('message', 'Không tồn tại danh mục!');
         }
-        return redirect('admin/list-tag');
+        $tag->delete();
+        Session::flash('iconMessage', 'success');
+        return redirect('admin/list-tag')->with('message', 'Xóa thành công');
     }
 
     public function unactive_tag($id)
     {
         $tag = Tag::find($id);
-        $tag->hidden = 1;
+        $tag->hidden = 0;
         $tag->save();
         session(['status' => 'Ẩn danh mục thành công', 'tieuDe' => 'Success']);
         return redirect('admin/list-tag');
@@ -75,9 +88,50 @@ class TagController extends Controller
     public function active_tag($id)
     {
         $tag = Tag::find($id);
-        $tag->hidden = 0;
+        $tag->hidden = 1;
         $tag->save();
         session(['status' => 'Hiện danh mục thành công', 'tieuDe' => 'Success']);
         return redirect('admin/list-tag');
+    }
+
+// xóa mềm
+    public function softDelete($id){
+        Tag::find($id)->delete();
+        Session::flash('iconMessage', 'success');
+        return back()->with('message', 'Xóa thành công!');
+    }
+    
+    public function trashed(){
+        $perpages = 5;
+        $tagTrash = Tag::orderBy('deleted_at','desc')->onlyTrashed()->paginate($perpages)->withQueryString();
+        return view("admin.tag.trash_tag", compact('tagTrash'));
+    }
+
+    public function restore($id){
+        $tag = Tag::withTrashed()->where('id', $id)->first();
+        if ($tag) {
+            $tag->restore();
+            Session::flash('iconMessage', 'success');
+            return back()->with('message', 'Hoàn tác thành công!');
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function restoreAll() {
+        Tag::onlyTrashed()->restore();
+        Session::flash('iconMessage', 'success');
+        return back()->with('message', 'Hoàn tác thành công!');
+    }
+    
+    public function forceDelete($id){
+        $tag = Tag::withTrashed()->find($id); // Lấy bản ghi đã xóa mềm
+        if ($tag) {
+            $tag->forceDelete();
+            Session::flash('iconMessage', 'success');
+            return redirect()->back()->with('message', 'Xóa thành công!');
+        } else {
+            return abort(404); 
+        }
     }
 }

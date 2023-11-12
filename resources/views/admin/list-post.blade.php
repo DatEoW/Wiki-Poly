@@ -37,7 +37,7 @@
                 <span class="icon text-white-50">
                 <i class="fa-solid fa-square-plus"></i>
                 </span>
-                <span class="text">Thêm</span>
+                <span class="text">Thêm tin</span>
 
             </a>
         </div>

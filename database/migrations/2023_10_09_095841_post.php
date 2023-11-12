@@ -32,7 +32,6 @@ return new class extends Migration
             $table->foreign('id_cate')->references('id')->on('category')->onUpdate('cascade')->onDelete('restrict');
 
 
-
         });
     }
 
