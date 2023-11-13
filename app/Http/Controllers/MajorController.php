@@ -131,7 +131,7 @@ class MajorController extends Controller
     }
     
     public function forceDelete($id){
-        $major = Major::withTrashed()->find($id); // Lấy bản ghi đã xóa mềm
+        $major = Major::withTrashed()->find($id); // Lấy bản ghi đã xóa mềm 
         if ($major) {
             $major->forceDelete();
             Session::flash('iconMessage', 'success');
@@ -140,4 +140,5 @@ class MajorController extends Controller
             return abort(404); 
         }
     }
+    //request
 }
