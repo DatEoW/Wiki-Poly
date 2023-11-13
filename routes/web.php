@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 
@@ -9,11 +10,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\AccountController;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/',[HomeController::class,'index'])->name('index');
+//show trang chủ va trang chi tiết
+Route::get('/', [IndexController::class, 'home'])->name('home');
+Route::get('/details/{slug}', [IndexController::class, 'details'])->name('details');
+
+// Route::get('/',[HomeController::class,'index'])->name('index');
 
 
 
@@ -26,36 +32,36 @@ Route::group(['middleware' => 'auth'], function () {
 // check tài khoản admin cấm vào user
 Route::group(['middleware' => 'auth','checkAdminRole'], function () {
     Route::prefix('admin')->group(function () {
-        Route::get('/', [AdminController::class,'index_admin'])->name('admin');
+        Route::get('/', [AdminController::class, 'index_admin'])->name('admin');
 
         // post
-        Route::get('list-post', [PostController::class,'list_post'])->name('list-post');
-        Route::get('add-post', [PostController::class,'add_post_form'])->name('add-post-form');
-        Route::post('/upload', [PostController::class,'uploadimage'])->name('ckeditor.upload');
-        Route::post('add-post', [PostController::class,'add_post'])->name('add-post-form');
-        Route::get('edit-post{id}', [PostController::class,'edit_post'])->name('edit-post');
-        Route::post('edit-post{id}', [PostController::class,'update_post'])->name('update-post');
-        Route::get('delete-post{id}', [PostController::class,'delete_post'])->name('delete-post');
-        Route::get('hidden-post{id}', [PostController::class,'hidden_post'])->name('hidden-post');
+        Route::get('list-post', [PostController::class, 'list_post'])->name('list-post');
+        Route::get('add-post', [PostController::class, 'add_post_form'])->name('add-post-form');
+        Route::post('/upload', [PostController::class, 'uploadimage'])->name('ckeditor.upload');
+        Route::post('add-post', [PostController::class, 'add_post'])->name('add-post-form');
+        Route::get('edit-post{id}', [PostController::class, 'edit_post'])->name('edit-post');
+        Route::post('edit-post{id}', [PostController::class, 'update_post'])->name('update-post');
+        Route::get('delete-post{id}', [PostController::class, 'delete_post'])->name('delete-post');
+        Route::get('hidden-post{id}', [PostController::class, 'hidden_post'])->name('hidden-post');
 
         //user
 
-        Route::get('list-user', [AdminController::class,'list_user'])->name('list-user');
+        Route::get('list-user', [AdminController::class, 'list_user'])->name('list-user');
 
         // //category
         // Route::get('list-category',[AdminController::class,'list_categories'])->name('list-category');
 
         //major-child
-        Route::get('list-major-child', [AdminController::class,'list_major_child'])->name('list-major-child');
+        Route::get('list-major-child', [AdminController::class, 'list_major_child'])->name('list-major-child');
 
         //comment
-        Route::get('list-comment', [AdminController::class,'list_comment'])->name('list-comment');
+        Route::get('list-comment', [AdminController::class, 'list_comment'])->name('list-comment');
 
         // //tag
         // Route::get('list-tag',[AdminController::class,'list_tag'])->name('list-tag');
 
         //post tag
-        Route::get('list-post-by-tag', [AdminController::class,'list_post_by_tag']);
+        Route::get('list-post-by-tag', [AdminController::class, 'list_post_by_tag']);
 
 
 
