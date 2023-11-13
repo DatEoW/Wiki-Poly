@@ -6,8 +6,18 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <a href="{{route('major.create')}}" class="btn btn-success">Thêm mới &nbsp;<i class="bi bi-plus-circle"></i></a>
-                <a href="{{route('major.trashed')}}" class="btn btn-danger">Thùng rác &nbsp;<i class='bx bxs-trash'></i></a>
+                <a href="{{route('major.create')}}" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fa-solid fa-square-plus"></i>
+                    </span>
+                    <span class="text">Thêm ngành học</span>
+                </a>
+                <a href="{{route('major.trashed')}}" class="btn btn-warning btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-trash" ></i>
+                    </span>
+                    <span class="text" style="width:120px">Thùng Rác</span>
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -36,10 +46,20 @@
                                     <td>{{$mj->slug}}</td>
                                     <td>
                                         @if($mj->hidden==0)
-                                            <span style="color: red">Ẩn</span>
+                                        <a href="{{route('major.active', ['id' => $mj->id])}}"onclick="return confirm('Bạn có chắc muốn hiển thị ngành học này?')" class="btn btn-primary btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fa-solid fa-user"></i>
+                                            </span>
+                                            <span class="text" style="width:120px">Ẩn</span>
+                                        </a>
                                         @else
-                                            <span style="color: green">Hiện</span>
-                                        @endif                
+                                            <a href="{{route('major.unactive', ['id' => $mj->id])}}"onclick="return confirm('Bạn có chắc muốn bỏ hiển thị danh mục?')" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fa-solid fa-user"></i>
+                                                    </span>
+                                                    <span class="text" style="width:120px">Hiện</span>
+                                            </a>
+                                        @endif
                                     </td>
                                     <td>
                                         <div>

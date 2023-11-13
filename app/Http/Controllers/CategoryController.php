@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+
 
 session_start();
 class CategoryController extends Controller
@@ -54,20 +55,33 @@ class CategoryController extends Controller
         return redirect('admin/list-category');
     }
 
-    public function delete_category($id)
+    // public function delete_category($id)
+    // {
+    //     $category = Category::find($id);
+    //     if ($category) {
+    //         $category->delete();
+    //         session(['status' => 'Xóa thành công', 'tieuDe' => 'Deleted']);
+    //     }
+    //     return redirect('admin/list-category');
+    // }
+
+    public function destroy(Request $request,string $id)
     {
         $category = Category::find($id);
-        if ($category) {
-            $category->delete();
-            session(['status' => 'Xóa thành công', 'tieuDe' => 'Deleted']);
+        if ($category == null) {
+            $request->session();
+            Session::flash('iconMessage', 'info');
+            redirect()->back()->with('message', 'Không tồn tại danh mục!');
         }
-        return redirect('admin/list-category');
+        $category->delete();
+        Session::flash('iconMessage', 'success');
+        return redirect('admin/list-category')->with('message', 'Xóa thành công');
     }
 
     public function unactive_category($id)
     {
         $category = Category::find($id);
-        $category->hidden = 1;
+        $category->hidden = 0;
         $category->save();
         session(['status' => 'Ẩn danh mục thành công', 'tieuDe' => 'Success']);
         return redirect('admin/list-category');
@@ -75,9 +89,49 @@ class CategoryController extends Controller
     public function active_category($id)
     {
         $category = Category::find($id);
-        $category->hidden = 0;
+        $category->hidden = 1;
         $category->save();
         session(['status' => 'Hiện danh mục thành công', 'tieuDe' => 'Success']);
         return redirect('admin/list-category');
+    }
+// xóa mềm
+    public function softDelete($id){
+        Category::find($id)->delete();
+        Session::flash('iconMessage', 'success');
+        return back()->with('message', 'Xóa thành công!');
+    }
+    
+    public function trashed(){
+        $perpages = 5;
+        $categoryTrash = Category::orderBy('deleted_at','desc')->onlyTrashed()->paginate($perpages)->withQueryString();
+        return view("admin.category.trash_category", compact('categoryTrash'));
+    }
+
+    public function restore($id){
+        $category = Category::withTrashed()->where('id', $id)->first();
+        if ($category) {
+            $category->restore();
+            Session::flash('iconMessage', 'success');
+            return back()->with('message', 'Hoàn tác thành công!');
+        } else {
+            return abort(404);
+        }
+    }
+
+    public function restoreAll() {
+        Category::onlyTrashed()->restore();
+        Session::flash('iconMessage', 'success');
+        return back()->with('message', 'Hoàn tác thành công!');
+    }
+    
+    public function forceDelete($id){
+        $category = Category::withTrashed()->find($id); // Lấy bản ghi đã xóa mềm
+        if ($category) {
+            $category->forceDelete();
+            Session::flash('iconMessage', 'success');
+            return redirect()->back()->with('message', 'Xóa thành công!');
+        } else {
+            return abort(404); 
+        }
     }
 }

@@ -74,6 +74,8 @@ Route::group(['middleware' => 'auth','checkAdminRole'], function () {
         Route::get('/major/restore/{id}', [MajorController::class, 'restore'])->name('major.restore');
         Route::get('/major-restore-all', [MajorController::class, 'restoreAll'])->name('major.restoreAll');
         Route::get('/major/delete/{id}', [MajorController::class, 'forceDelete'])->name('major.delete');
+        Route::get('unactive-major/{id}', [MajorController::class, 'unactive_major'])->name('major.unactive');
+        Route::get('active-major/{id}', [MajorController::class, 'active_major'])->name('major.active');;
 
 
         //majorC nghi
@@ -83,26 +85,46 @@ Route::group(['middleware' => 'auth','checkAdminRole'], function () {
         Route::get('/majorC/restore/{id}', [MajorChildController::class, 'restore'])->name('majorC.restore');
         Route::get('/majorC-restore-all', [MajorChildController::class, 'restoreAll'])->name('majorC.restoreAll');
         Route::get('/majorC/delete/{id}', [MajorChildController::class, 'forceDelete'])->name('majorC.delete');
-
+        Route::get('unactive-majorc/{id}', [MajorChildController::class, 'unactive_majorC'])->name('majorC.unactive');
+        Route::get('active-majorc/{id}', [MajorChildController::class, 'active_majorC'])->name('majorC.active');;
 
         // Category -huu
+        // xóa mềm category
+        Route::resource('category', (CategoryController::class));
+        Route::get('/category-trashed', [CategoryController::class, 'trashed'])->name('category.trashed');
+        Route::get('/category/soft-delete/{id}', [CategoryController::class, 'softDelete'])->name('category.softDelete');
+        Route::get('/category/restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
+        Route::get('/category-restore-all', [CategoryController::class, 'restoreAll'])->name('category.restoreAll');
+        Route::get('/category/delete/{id}', [CategoryController::class, 'forceDelete'])->name('category.delete');
+
         Route::get('list-category', [CategoryController::class, 'list_category'])->name('list-category');
         Route::get('add-category', [CategoryController::class, 'add_category']);
         Route::post('save-category', [CategoryController::class, 'save_category']);
         Route::get('edit-category/{id}', [CategoryController::class, 'edit_category']);
-        Route::get('delete-category/{id}', [CategoryController::class, 'delete_category']);
+        // Route::get('delete-category/{id}', [CategoryController::class, 'delete_category']);
         Route::post('update-category/{id}', [CategoryController::class, 'update_category']);
-        Route::get('unactive-category/{id}', [CategoryController::class, 'unactive_category']);
-        Route::get('active-category/{id}', [CategoryController::class, 'active_category']);
+        Route::get('unactive-category/{id}', [CategoryController::class, 'unactive_category'])->name('category.unactive');
+        Route::get('active-category/{id}', [CategoryController::class, 'active_category'])->name('category.active');
+
+
         // Tag -huu
+
+        // xóa mềm tag
+        Route::resource('tag', (TagController::class));
+        Route::get('/tag-trashed', [TagController::class, 'trashed'])->name('tag.trashed');
+        Route::get('/tag/soft-delete/{id}', [TagController::class, 'softDelete'])->name('tag.softDelete');
+        Route::get('/tag/restore/{id}', [TagController::class, 'restore'])->name('tag.restore');
+        Route::get('/tag-restore-all', [TagController::class, 'restoreAll'])->name('tag.restoreAll');
+        Route::get('/tag/delete/{id}', [TagController::class, 'forceDelete'])->name('tag.delete');
+
         Route::get('list-tag', [TagController::class, 'list_tag'])->name('list-tag');
         Route::get('add-tag', [TagController::class, 'add_tag']);
         Route::post('save-tag', [TagController::class, 'save_tag']);
         Route::get('edit-tag/{id}', [TagController::class, 'edit_tag']);
-        Route::get('delete-tag/{id}', [TagController::class, 'delete_tag']);
+        // Route::get('delete-tag/{id}', [TagController::class, 'delete_tag']);
         Route::post('update-tag/{id}', [TagController::class, 'update_tag']);
-        Route::get('unactive-tag/{id}', [TagController::class, 'unactive_tag']);
-        Route::get('active-tag/{id}', [TagController::class, 'active_tag']);
+        Route::get('unactive-tag/{id}', [TagController::class, 'unactive_tag'])->name('tag.unactive');
+        Route::get('active-tag/{id}', [TagController::class, 'active_tag'])->name('tag.active');
     });
 });
 

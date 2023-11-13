@@ -71,7 +71,23 @@ class MajorController extends Controller
         return redirect(route('major.index'))->with('message', 'Chỉnh sửa ngành thành công!');
     }
 
-   
+    public function unactive_major($id)
+    {
+        $major = Major::find($id);
+        $major->hidden = 0;
+        $major->save();
+        Session::flash('iconMessage', 'success');
+        return redirect(route('major.index'))->with('message', 'Ẩn ngành thành công!');
+    }
+    public function active_major($id)
+    {
+        $major = Major::find($id);
+        $major->hidden = 1;
+        $major->save();
+        Session::flash('iconMessage', 'success');
+        return redirect(route('major.index'))->with('message', 'Hiển thị ngành thành công!');
+    }
+
     public function destroy(Request $request,string $id)
     {
         $major = Major::find($id);
@@ -124,4 +140,5 @@ class MajorController extends Controller
             return abort(404); 
         }
     }
+    // request new branch
 }
