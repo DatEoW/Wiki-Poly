@@ -44,8 +44,8 @@ class PostController extends Controller
             $file = $request->file('img');
             $name = $file->getClientOriginalName();
             $image = time()."_".$name;
-            $file->move(public_path().'/img/',$image);
-            $input['img'] = $image;
+            $file->move(public_path().'/uploads/',$image);
+            $input['img'] = '/uploads/'.$image;
         }
         $post = Post::create($input);
         session()->flash('success', 'Thêm thành công');
@@ -61,18 +61,13 @@ class PostController extends Controller
     public function update_post(Request $request,$id){
         $post = Post::find($id);
         $input = $request->all();
-        if(request()->content){
-            $input['content'] = $request->content;
-        }else{
-            $input['content'] = "" ;
-        }
         $input['slug'] = Str::of($input['title'])->slug('-');
         if(request()->hasFile('img')){
             $file = $request->file('img');
             $name = $file->getClientOriginalName();
             $image = time()."_".$name;
-            $file->move(public_path().'/img/',$image);
-            $input['img'] = $image;
+            $file->move(public_path().'/uploads/',$image);
+            $input['img'] = '/uploads/'.$image;
         }
         $post->update($input);
         return redirect()->route('list-post');

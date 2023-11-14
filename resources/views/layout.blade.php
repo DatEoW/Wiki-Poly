@@ -27,7 +27,7 @@
     <meta property="fb:app_id" content="&#123;4503548749750825&#125;" />
 
 
- 
+
 </head>
 
 <body>
@@ -61,7 +61,7 @@
                                     </ul>
                                 </div>
                                 <div class="header-info-right">
-                                    <ul class="header-social">
+<ul class="header-social">
                                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                         <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                         <li> <a href="#"><i class="fab fa-pinterest-p"></i></a></li>
@@ -108,7 +108,7 @@
                                                     <li><a href="elements.html">Tuyển sinh 2023</a></li>
                                                     <li><a href="blog.html">Học phí</a></li>
                                                     <li><a href="single-blog.html">Nộp hồ sơ online</a></li>
-                                                    <li><a href="details.html">Những điều cần biết ?</a></li>
+<li><a href="details.html">Những điều cần biết ?</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="#">Chương Trình Đào Tạo</a>
@@ -145,7 +145,7 @@
                                     </nav>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-4">
+<div class="col-xl-2 col-lg-2 col-md-4">
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <i class="fas fa-search special-tag"></i>
                                     <div class="search-box">
@@ -168,9 +168,9 @@
         <!-- Header End -->
     </header>
 
- 
+
     @yield('content')
-  
+
 
     <footer>
         <!-- Footer Start-->
@@ -205,7 +205,7 @@
                             <div class="footer-tittle">
                                 <h4>Bản Tin</h4>
                                 <p>Hãy chat với chúng tôi!</p>
-                                <!-- Form -->
+<!-- Form -->
                                 <div class="footer-form">
                                     <div id="mc_embed_signup">
                                         <form target="_blank"
@@ -243,7 +243,7 @@
                                     <!-- <li><a href="#"><img src="assets/img/post/instra2.jpg" alt=""></a></li>
                                     <li><a href="#"><img src="assets/img/post/instra3.jpg" alt=""></a></li>
                                     <li><a href="#"><img src="assets/img/post/instra4.jpg" alt=""></a></li>
-                                    <li><a href="#"><img src="assets/img/post/instra5.jpg" alt=""></a></li>
+<li><a href="#"><img src="assets/img/post/instra5.jpg" alt=""></a></li>
                                     <li><a href="#"><img src="assets/img/post/instra6.jpg" alt=""></a></li> -->
                                 </ul>
                             </div>
@@ -287,44 +287,43 @@
     <!-- JS here -->
 
     <!-- All JS Custom Plugins Link Here here -->
-    <script src="./{{asset('assets/js/vendor/modernizr-3.5.0.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/modernizr-3.5.0.min.js')}}"></script>
     <!-- Jquery, Popper, Bootstrap -->
-    <script src="./{{asset('assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
-    <script src="./{{asset('assets/js/popper.min.js')}}"></script>
-    <script src="./{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{asset('assets/js/popper.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <!-- Jquery Mobile Menu -->
-    <script src="./{{asset('assets/js/jquery.slicknav.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.slicknav.min.js')}}"></script>
 
     <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="./{{asset('assets/js/owl.carousel.min.js')}}"></script>
-    <script src="./{{asset('assets/js/slick.min.js')}}"></script>
+    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/js/slick.min.js')}}"></script>
     <!-- Date Picker -->
     <script src=".{{asset('/assets/js/gijgo.min.js')}}"></script>
     <!-- One Page, Animated-HeadLin -->
-    <script src="./{{asset('assets/js/wow.min.js')}}"></script>
-    <script src="./{{asset('assets/js/animated.headline.js')}}"></script>
-    <script src="./{{asset('assets/js/jquery.magnific-popup.js')}}"></script>
+    <script src="{{asset('assets/js/wow.min.js')}}"></script>
+<script src="{{asset('assets/js/animated.headline.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.magnific-popup.js')}}"></script>
 
     <!-- Breaking New Pluging -->
-    <script src="./{{asset('assets/js/jquery.ticker.js')}}"></script>
-    <script src=".{{asset('/assets/js/site.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.ticker.js')}}"></script>
+    <script src="{{asset('/assets/js/site.js')}}"></script>
 
     <!-- Scrollup, nice-select, sticky -->
-    <script src="./{{asset('assets/js/jquery.scrollUp.min.js')}}"></script>
-    <script src="./{{asset('assets/js/jquery.nice-select.min.js')}}"></script>
-    <script src="./{{asset('assets/js/jquery.sticky.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.scrollUp.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.nice-select.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.sticky.js')}}"></script>
 
     <!-- contact js -->
-    <script src="./{{asset('assets/js/contact.js')}}"></script>
-    <script src="./{{asset('assets/js/jquery.form.js')}}"></script>
-    <script src="./{{asset('assets/js/jquery.validate.min.js')}}"></script>
-    <script src="./{{asset('assets/js/mail-script.js')}}"></script>
-    <script src="./{{asset('assets/js/jquery.ajaxchimp.min.js')}}"></script>
+    <script src="{{asset('assets/js/contact.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.form.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('assets/js/mail-script.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.ajaxchimp.min.js')}}"></script>
 
     <!-- Jquery Plugins, main Jquery -->
-    <script src="./{{asset('assets/js/plugins.js')}}"></script>
-    <script src="./{{asset('assets/js/main.js')}}"></script>
+    <script src="{{asset('assets/js/plugins.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
     <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0&appId=137512346112486" nonce="YWCKrzT9"></script>
-
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v18.0&appId=357766372670685" nonce="1gcs5Wau"></script>
 </html>

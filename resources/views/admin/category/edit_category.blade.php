@@ -14,7 +14,7 @@
             <div class="card-body card-block">
                 <form action="{{ url('admin/update-category', ['id' => $category->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                     @csrf
-               
+
                     <div class="row form-group">
                         <div class="col col-md-3">
                             <label for="" class=" form-control-label">Tên danh mục</label>
@@ -31,7 +31,7 @@
 
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="convert_slug" name="category_slug" placeholder="Text" class="form-control">
+                            <input type="text" id="convert_slug" name="category_slug" placeholder="Text" class="form-control" value="{{$category->slug}}">
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-12 col-md-9">
                             <select name="category_hidden" id="select" class="form-control">
-                            
+
                                 <option value="1">Hiện</option>
                                 <option value="0">Ẩn</option>
                             </select>
@@ -49,7 +49,7 @@
                     </div>
 
                     @endif
-             
+
 
 
                     <div class="card-footer">
