@@ -27,7 +27,126 @@ class HomeController extends Controller
 
         $major=DB::table('major')->get();
         $majorC=DB::table('major_child')->get();
-        return view('Client/index',compact('major','majorC'));
+        $post=DB::table('post')
+        ->join('category','post.id_cate','category.id')
+        ->join('major','post.id_major','major.id')
+        ->join('major_child','post.id_major_child','major_child.id')
+        ->select('post.*','category.name as cate_name','major.name as major_name','major_child.name as majorC_name')
+        ->get();
+        $post_views=DB::table('post')
+        ->join('category','post.id_cate','category.id')
+        ->join('major','post.id_major','major.id')
+        ->join('major_child','post.id_major_child','major_child.id')
+        ->select('post.*','category.name as cate_name','major.name as major_name','major_child.name as majorC_name')
+        ->orderBy('post.views','desc')
+        ->limit(5)
+        ->get();
+        $post_recent=DB::table('post')
+        ->join('category','post.id_cate','category.id')
+        ->join('major','post.id_major','major.id')
+        ->join('major_child','post.id_major_child','major_child.id')
+        ->select('post.*','category.name as cate_name','major.name as major_name','major_child.name as majorC_name')
+        ->orderBy('post.id','desc')
+        ->limit(5)
+        ->get();
+        return view('Client/index',compact('major','majorC','post','post_views','post_recent'));
+    }
+    public function sort_search(Request $request)
+    {
+
+        $input = $request->all();
+        $query = DB::table('post')
+        ->join('category','post.id_cate','category.id')
+        ->join('major','post.id_major','major.id')
+        ->join('major_child','post.id_major_child','major_child.id')
+        ->select('post.*','category.name as cate_name','major.name as major_name','major_child.name as majorC_name');
+        // dd($input['keyword']);
+        if (!empty($input['keyword'])) {
+
+
+            if (!empty($input['cate'])) {
+                $query = $query->where('id_cate', '=', $input['cate']);
+
+            }
+            if (!empty($input['major'])) {
+                $query = $query->where('id_major', '=', $input['major']);
+            }
+            if (!empty($input['views'])) {
+                $query = $query->orderBy('views','desc');
+
+            }
+            if (!empty($input['hot'])) {
+                $query = $query->where('hot', '=', $input['hot']);
+            }
+
+            $query = $query->where('title', 'like', $input['keyword'] . '%');
+        } else {
+            if (!empty($input['cate'])) {
+                $query = $query->where('id_cate', '=', $input['cate']);
+
+            }
+            if (!empty($input['major'])) {
+                $query = $query->where('id_major', '=', $input['id_major']);
+            }
+            if (!empty($input['views'])) {
+                $query = $query->orderBy('views','desc');
+
+            }
+            if (!empty($input['hot'])) {
+                $query = $query->where('hot', '=', $input['hot']);
+            }
+        }
+
+
+        // dd($query);
+        $query = $query->get();
+        $major=\DB::table('major')->get();
+        $majorC=\DB::table('major_child')->get();
+
+
+        // dd($query);
+        return view('pages.sort_search',compact('query','major','majorC'));
+    }
+    public function sort_major($major){
+
+
+        $query = DB::table('post')
+        ->join('category','post.id_cate','category.id')
+        ->join('major','post.id_major','major.id')
+        ->join('major_child','post.id_major_child','major_child.id')
+        ->select('post.*','category.name as cate_name','major.name as major_name','major_child.name as majorC_name')
+        ->where('post.id_major', '=', $major);
+
+
+        $query = $query->get();
+        $major=\DB::table('major')->get();
+        $majorC=\DB::table('major_child')->get();
+
+
+        // dd($query);
+        return view('pages.sort_search',compact('query','major','majorC'));
+
+    }
+    public function sort_major_child($majorC){
+
+
+
+        $query = DB::table('post')
+        ->join('category','post.id_cate','category.id')
+        ->join('major','post.id_major','major.id')
+        ->join('major_child','post.id_major_child','major_child.id')
+        ->select('post.*','category.name as cate_name','major.name as major_name','major_child.name as majorC_name')
+        ->where('post.id_major_child', '=', $majorC);
+
+
+        $query = $query->get();
+        $major=\DB::table('major')->get();
+        $majorC=\DB::table('major_child')->get();
+
+
+        // dd($query);
+        return view('pages.sort_search',compact('query','major','majorC'));
+
     }
 
 }

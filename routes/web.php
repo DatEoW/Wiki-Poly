@@ -21,6 +21,10 @@ Route::get('/details/{slug}', [IndexController::class, 'details'])->name('detail
 
 Route::get('/',[HomeController::class,'index'])->name('index');
 
+Route::post('/sort_search',[HomeController::class,'sort_search'])->name('sort_search');
+Route::get('/sort_major/{major}',[HomeController::class,'sort_major'])->name('sort_major');
+Route::get('/sort_major_child/{majorC}',[HomeController::class,'sort_major_child'])->name('sort_major_child');
+
 
 
 //chỉ có tài khoản đã đăng nhập mới được vào
@@ -124,9 +128,17 @@ Route::group(['middleware' => 'auth','checkAdminRole'], function () {
         Route::post('update-tag/{id}', [TagController::class, 'update_tag']);
         // Route::get('unactive-tag/{id}', [TagController::class, 'unactive_tag']);
         // Route::get('active-tag/{id}', [TagController::class, 'active_tag']);
+
+
+        // Comment -huu
+        Route::get('list-comment', [CommentController::class, 'list_comment'])->name('list-comment');
+
+        Route::get('xoa-comment/{id}', [CommentController::class, 'xoa_comment'])->name('xoa_comment');
+        Route::get('an-comment/{id}', [CommentController::class, 'an_comment'])->name('an_comment');
+        Route::get('hien-comment/{id}', [CommentController::class, 'hien_comment'])->name('hien_comment');
     });
 });
-
+Route::post('save-comment', [CommentController::class, 'saveComment'])->name('save_comment');
 
 // account
 Route::get('login',[AccountController::class,'login'])->name('login');

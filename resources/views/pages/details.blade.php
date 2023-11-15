@@ -115,14 +115,8 @@ My hero when I was a kid was my mom. Same for everyone I knew. Moms are untoucha
                 <div class="col-lg-4 ">
 
 
-                    <div class="detail-info about-img border border-1 py-2 px-2">
-                        <img src="assets/img/trending/photo-1-1650515002778826123230.jpg" alt="">
-                        Thời gian: Diễn ra hằng năm
-                        <br>
-                        Website: <a href="" class="text-primary">Cao đẳng fpt polytechnic</a>
 
-                    </div>
-                    <a href="#" class="download text-danger">Tập tin tải xuống</a>
+
                     <!-- Section Tittle
 <div class="section-tittle mb-40">
                             <h3>Follow Us</h3>
@@ -174,12 +168,93 @@ My hero when I was a kid was my mom. Same for everyone I knew. Moms are untoucha
                         </div> -->
                 </div>
             </div>
-            {{-- conment fb --}}
-            @php
-            $url = Request::url();
-            @endphp
 
-            <div class="fb-comments" data-href="{{$url}}" data-width="" data-numposts="5"></div>
+
+
+            <div class="container mt-5">
+
+                <div class="row">
+
+                    <div class="col-md-9">
+
+
+                        <div class="headings d-flex justify-content-between align-items-center mb-3">
+                            <h5>Bình luận({{ isset($comment) ? count($comment) : 0 }})</h5>
+                        </div>
+
+                        @if(isset($comment) && count($comment) > 0)
+                            @foreach($comment as $singleComment)
+                                <div class="card p-3 mt-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="user d-flex flex-row align-items-center">
+                                            <!-- Gravatar image based on the user's email -->
+                                            <img src="{{ 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($singleComment->email_user))).'?s=30&d=mp' }}" class="user-img rounded-circle mr-2">
+                                            <span>
+                                                <small class="font-weight-bold text-primary">{{ $singleComment->name_user }}</small>
+
+                                            </span>
+                                        </div>
+                                        <small>{{ $singleComment->time_ago }}</small>
+                                    </div>
+
+                                    <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                        <div class="reply px-4">
+                                            <small class="font-weight-bold">{{ $singleComment->content }}</small>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>No comments yet.</p>
+                        @endif
+
+                    <!-- Comment Form -->
+                <div class="  mt-2 ">
+                    <form action="{{ route('save_comment') }}" method="post" >
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="name_user" class="form-label">Tên người dùng:</label>
+                                <input type="text" id="name_user" name="name_user" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="user_email" class="form-label">Email: (không bắt buộc)</label>
+                                <input type="email" id="user_email" name="email_user" class="form-control">
+                            </div>
+                        </div>
+
+                        <label for="content" class="form-label mt-3">Bình luận:</label>
+                        <textarea id="content" name="content" class="form-control" required></textarea>
+
+                        <input type="hidden" name="id_post" value="{{ $post->id }}">
+                        <input type="hidden" name="id_major" value="{{ $post->id_major }}">
+                        <input type="hidden" name="hidden" value="1">
+
+                        <button type="submit" style="
+    display: inline-block;margin-top:10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #ff6600;
+    color: #fff;
+    background-color: #ff6600;
+    border-radius: 4px;
+">Gửi bình luận</button>
+
+                    </form>
+                </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
         </div>
 </div>
     <!-- About US End -->

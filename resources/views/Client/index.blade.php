@@ -52,8 +52,8 @@
             display: block;
             top: 15px;
             background-color: white;
-            width: 180px;
-            border-top: 5px #fc3f00 solid;
+            /* width: 180px; */
+
 
         }
 
@@ -172,16 +172,16 @@
                                                     <li><a href="single-blog.html">Tiếng anh</a></li>
                                                     <li><a href="details.html">Công nghệ kỹ thuật cơ khí</a></li> --}}
                                                     {{-- {{ $majorC }} --}}
-                                                    @foreach($major as $key => $major)
+                                                    @foreach($major as $key => $mj)
 
 
-                                                    <li><a href="details.html">{{ $major->name }}</a>
-                                                        <ul class="sub-submenu">
+                                                    <li><a href="{{ route('sort_major',$mj->id )}}">{{ $mj->name }}</a>
+                                                        <ul class="sub-submenu" style="border-top: 5px #fc3f00 solid;">
                                                         @foreach($majorC as $key => $maC)
 
-                                                            @if($maC->id_major==$major->id)
+                                                            @if($maC->id_major==$mj->id)
 
-                                                                    <li style=" width: 180px;"><a href="elements.html" class="pt-3 ">{{ $maC->name }}</a>
+                                                                    <li style=" width: 180px;"><a href="{{ route('sort_major_child',$maC->id ) }}" class="pt-3 ">{{ $maC->name }}</a>
                                                                     </li>
 
 
@@ -212,7 +212,7 @@
                                                     <li><a href="single-blog.html">Doanh nghiệp tuyển dụng</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact.html">Hot</a></li>
+                                            {{-- <li><a href="contact.html">Hot</a></li> --}}
                                         </ul>
                                     </nav>
                                 </div>
@@ -221,8 +221,9 @@
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <i class="fas fa-search special-tag"></i>
                                     <div class="search-box">
-                                        <form action="#">
-                                            <input type="text" placeholder="Tìm kiếm ...">
+                                        <form action="{{ route('sort_search') }}" method="POST">
+                                            @csrf
+                                            <input type="text" placeholder="Tìm kiếm ..." name="keyword">
                                         </form>
                                     </div>
                                 </div>
@@ -281,105 +282,45 @@
                             <!-- Trending Bottom -->
                             <div class="trending-bottom">
                                 <div class="row">
+                                    @for($i = 0; $i < 5; $i+=2)
                                     <div class="col-lg-4">
                                         <div class="single-bottom mb-35">
                                             <div class="trend-bottom-img mb-30">
-                                                <img src="/client/img/trending/trending_bottom2.png" alt="">
+                                                <img src="{{ $post[$i]->img }}" alt="" style="height:157px">
                                             </div>
                                             <div class="trend-bottom-cap">
-                                                <span class="color1">Lifestyple</span>
-                                                <h4><a href="details.html">Không dừng lại ở thành tích trong trường, nữ
-                                                        sinh FPT Polytechnic Hà Nội liên tục thăng tiến khi đi thực
-                                                        tập</a></h4>
+                                                <span class="color1">{{ $post[$i]->cate_name }}</span>
+                                                <h4><a href="{{route('details',$post[$i]->slug)}}">{{ $post[$i]->title }}</a></h4>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="single-bottom mb-35">
-                                            <div class="trend-bottom-img mb-30">
-                                                <img src="/client/img/trending/trending-bottom3.jpg" alt="">
-                                            </div>
-                                            <div class="trend-bottom-cap">
-                                                <span class="color2">Sports</span>
-                                                <h4>
-                                                    <h4><a href="details.html">FPT Polytechnic Cần Thơ tham gia Triển
-                                                            lãm Công nghệ thông minh tại Việt Nam (OCTF 2023)</a></h4>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="single-bottom mb-35">
-                                            <div class="trend-bottom-img mb-30">
-                                                <img src="/client/img/trending/trending-bottom4.jpg" alt="">
-                                            </div>
-                                            <div class="trend-bottom-cap">
-                                                <span class="color3">Travels</span>
-                                                <h4><a href="details.html"> Nam sinh FPT Polytechnic TP HCM “ẵm” danh
-                                                        hiệu Thủ môn xuất sắc Giải bóng đá 7 người sinh viên TP HCM lần
-                                                        2 năm 2023</a></h4>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endfor
+
+
                                 </div>
                             </div>
                         </div>
                         <!-- Riht content -->
                         <div class="col-lg-4">
-                            <div class="trand-right-single d-flex">
-                                <div class="trand-right-img">
-                                    <img src="/client/img/trending/right1.jpg" alt=""
-                                        style="width: 120px; height: 100px;">
-                                </div>
-                                <div class="trand-right-cap">
-                                    <span class="color1">Concert</span>
-                                    <h4><a href="details.html">Lộ diện TOP 8 gương mặt đại diện FPT Polytechnic</a></h4>
-                                </div>
-                            </div>
-                            <div class="trand-right-single d-flex">
-                                <div class="trand-right-img">
-                                    <img src="/client/img/trending/right2.jpg" alt=""
-                                        style="width: 120px; height: 100px;">
-                                </div>
-                                <div class="trand-right-cap">
-                                    <span class="color3">sea beach</span>
-                                    <h4><a href="details.html">Giảng viên Anh Vũ: Anh thầy gen Z đồng hành cùng SV </a>
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="trand-right-single d-flex">
-                                <div class="trand-right-img">
-                                    <img src="/client/img/trending/right3.jpg" alt=""
-                                        style="width: 120px; height: 100px;">
-                                </div>
-                                <div class="trand-right-cap">
-                                    <span class="color2">Bike Show</span>
-                                    <h4><a href="details.html">Ngập tràn cảm xúc tại Lễ tốt nghiệp của tân cử nhân</a>
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="trand-right-single d-flex">
-                                <div class="trand-right-img">
-                                    <img src="/client/img/trending/right4.jpg" alt=""
-                                        style="width: 120px; height: 100px;">
-                                </div>
-                                <div class="trand-right-cap">
-                                    <span class="color4">See beach</span>
-                                    <h4><a href="details.html">FPT Polytechnic Đà Nẵng ký kết hợp tác cùng doanh
-                                            nghiệp</a></h4>
-                                </div>
-                            </div>
-                            <div class="trand-right-single d-flex">
-                                <div class="trand-right-img">
-                                    <img src="/client/img/trending/right5.jpg" alt=""
-                                        style="width: 120px; height: 100px;">
-                                </div>
-                                <div class="trand-right-cap">
-                                    <span class="color1">Skeping</span>
-                                    <h4><a href="details.html">Sinh viên FPT Polytechnic Tây Nguyên tham gia chạy bộ</a>
-                                    </h4>
-                                </div>
-                            </div>
+                            @foreach($post as $key => $value)
+                                @if($value->hot==2)
+                                    <div class="trand-right-single d-flex">
+                                        <div class="trand-right-img">
+                                            <img src="{{ $value->img }}" alt=""
+                                                style="width: 120px; height: 100px;">
+                                        </div>
+                                        <div class="trand-right-cap">
+                                            <span class="color1">{{ $value->cate_name }}</span>
+                                            <h4><a href="{{route('details',$value->slug)}}">{{ $value->title }}</a></h4>
+                                        </div>
+                                    </div>
+                                @else
+
+                                @endif
+
+                            @endforeach
+
+
                         </div>
                     </div>
                 </div>
@@ -464,23 +405,19 @@
                                 <div class="properties__button">
                                     <!--Nav Button  -->
                                     <nav>
+
+
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
-                                                href="#nav-home" role="tab" aria-controls="nav-home"
-                                                aria-selected="true">Tất cả</a>
-                                            <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Phong cách</a> -->
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            @foreach($major as $key => $mj)
+                                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
                                                 href="#nav-contact" role="tab" aria-controls="nav-contact"
-                                                aria-selected="false">Du lịch</a>
-                                            <a class="nav-item nav-link" id="nav-last-tab" data-toggle="tab"
-                                                href="#nav-last" role="tab" aria-controls="nav-contact"
-                                                aria-selected="false">Thời Trang</a>
-                                            <a class="nav-item nav-link" id="nav-Sports" data-toggle="tab"
-                                                href="#nav-nav-Sport" role="tab" aria-controls="nav-contact"
-                                                aria-selected="false">Thể thao</a>
-                                            <a class="nav-item nav-link" id="nav-technology" data-toggle="tab"
-                                                href="#nav-techno" role="tab" aria-controls="nav-contact"
-                                                aria-selected="false">Công nghệ</a>
+                                                aria-selected="false">{{ $mj->name }}</a>
+                                            @endforeach
+                                            {{-- <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                                href="#nav-home" role="tab" aria-controls="nav-home"
+                                                aria-selected="true">Tất cả</a> --}}
+                                            <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Phong cách</a> -->
+
                                         </div>
                                     </nav>
                                     <!--End Nav Button  -->
@@ -832,7 +769,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <!-- Section Tittle -->
+                        {{-- <!-- Section Tittle -->
                         <div class="section-tittle mb-40">
                             <h3>Theo Dõi Chúng Tôi</h3>
                         </div>
@@ -875,8 +812,8 @@
                                         <p>Fans</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> --}}
+                        {{-- </div> --}}
                         <!-- New Poster -->
                         <div class="news-poster d-none d-lg-block">
                             <img src="/client/img/news/news_card.jpg" alt="">
@@ -901,56 +838,20 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="weekly2-news-active dot-style d-flex dot-style">
+                                @foreach($post_views as $key => $value)
                                 <div class="weekly2-single">
                                     <div class="weekly2-img">
-                                        <img src="/client/img/news/weekly2News1.jpg" alt="">
+                                        <img src="{{ $value->img }}" alt="" style="width:270;height:180px">
                                     </div>
                                     <div class="weekly2-caption">
-                                        <span class="color1">Corporate</span>
+                                        <span class="color1">{{ $value->cate_name }}</span>
                                         <p>25 Jan 2020</p>
-                                        <h4><a href="#">SINH VIÊN FPT POLYTECHNIC TP HCM THAM QUAN THỰC TẾ</a></h4>
+                                        <h4><a href="{{ route('details',$value->slug)}}">{{ $value->title }}</a></h4>
                                     </div>
                                 </div>
-                                <div class="weekly2-single">
-                                    <div class="weekly2-img">
-                                        <img src="/client/img/news/weekly2News2.jpg" alt="">
-                                    </div>
-                                    <div class="weekly2-caption">
-                                        <span class="color1">Event night</span>
-                                        <p>25 Jan 2020</p>
-                                        <h4><a href="#">SINH VIÊN FPT POLYTECHNIC TP HCM THAM QUAN THỰC TẾ</a></h4>
-                                    </div>
-                                </div>
-                                <div class="weekly2-single">
-                                    <div class="weekly2-img">
-                                        <img src="/client/img/news/weekly2News3.jpg" alt="">
-                                    </div>
-                                    <div class="weekly2-caption">
-                                        <span class="color1">Corporate</span>
-                                        <p>25 Jan 2020</p>
-                                        <h4><a href="#">SINH VIÊN FPT POLYTECHNIC TP HCM THAM QUAN THỰC TẾ</a></h4>
-                                    </div>
-                                </div>
-                                <div class="weekly2-single">
-                                    <div class="weekly2-img">
-                                        <img src="/client/img/news/weekly2News4.jpg" alt="">
-                                    </div>
-                                    <div class="weekly2-caption">
-                                        <span class="color1">Event time</span>
-                                        <p>25 Jan 2020</p>
-                                        <h4><a href="#">SINH VIÊN FPT POLYTECHNIC TP HCM THAM QUAN THỰC TẾ</a></h4>
-                                    </div>
-                                </div>
-                                <div class="weekly2-single">
-                                    <div class="weekly2-img">
-                                        <img src="/client/img/news/weekly2News4.jpg" alt="">
-                                    </div>
-                                    <div class="weekly2-caption">
-                                        <span class="color1">Corporate</span>
-                                        <p>25 Jan 2020</p>
-                                        <h4><a href="#">SINH VIÊN FPT POLYTECHNIC TP HCM THAM QUAN THỰC TẾ</a></h4>
-                                    </div>
-                                </div>
+                                @endforeach
+
+
                             </div>
                         </div>
                     </div>
@@ -1096,16 +997,19 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="recent-active dot-style d-flex dot-style">
+                                @foreach($post_recent as $key => $value)
                                 <div class="single-recent mb-100">
                                     <div class="what-img">
-                                        <img src="/client/img/news/recent1.jpg" alt="">
+                                        <img src="{{ $value->img }}" alt="">
                                     </div>
                                     <div class="what-cap">
-                                        <span class="color1">Night party</span>
-                                        <h4><a href="#">Sáng tạo nghệ thuật vẽ nhanh với Wacom</a></h4>
+                                        <span class="color1">{{ $value->major_name }}</span>
+                                        <h4><a href="{{ route('details',$value->slug) }}">{{ $value->title }}</a></h4>
                                     </div>
                                 </div>
-                                <div class="single-recent mb-100">
+                                @endforeach
+
+                                {{-- <div class="single-recent mb-100">
                                     <div class="what-img">
                                         <img src="/client/img/news/recent2.jpg" alt="">
                                     </div>
@@ -1131,7 +1035,7 @@
                                         <span class="color1">Night party</span>
                                         <h4><a href="#">Sáng tạo nghệ thuật vẽ nhanh với Wacom</a></h4>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

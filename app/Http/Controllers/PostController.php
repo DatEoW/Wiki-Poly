@@ -87,4 +87,5 @@ class PostController extends Controller
         $post->update();
         return redirect()->route('list-post');
     }
+    
 }

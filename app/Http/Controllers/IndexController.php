@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
 
 class IndexController extends Controller
 {
-    public  function home()
-    {
-        $post_new5 = Post::orderBy('created_at', 'desc')->take(5)->get();
-        return view('pages.home', compact('post_new5'));
-    }
+
 
     public  function details($slug)
     {
+        $major=\DB::table('major')->get();
+        $majorC=\DB::table('major_child')->get();
         $post = Post::where('slug', $slug)->first();
-        return view('pages.details', compact('post'));
+        $comment = Comment::where('id_post', $post->id)->where('hidden', 1)->take(5)->get();
+        return view('pages.details', compact('post', 'comment','major','majorC'));
     }
 }
