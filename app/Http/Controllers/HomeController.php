@@ -47,8 +47,7 @@ class HomeController extends Controller
         ->join('major_child','post.id_major_child','major_child.id')
         ->select('post.*','category.name as cate_name','major.name as major_name','major_child.name as majorC_name')
         ->orderBy('post.id','desc')
-        ->limit(5)
-        ->get();
+        ->paginate(6);
         return view('Client/index',compact('major','majorC','post','post_views','post_recent'));
     }
     public function sort_search(Request $request)
@@ -99,9 +98,9 @@ class HomeController extends Controller
 
 
         // dd($query);
-        $query = $query->get();
-        $major=\DB::table('major')->get();
-        $majorC=\DB::table('major_child')->get();
+        $query = $query->paginate(6);
+        $major=\DB::table('major')->paginate(6);
+        $majorC=\DB::table('major_child')->paginate(6);
 
 
         // dd($query);
@@ -118,9 +117,9 @@ class HomeController extends Controller
         ->where('post.id_major', '=', $major);
 
 
-        $query = $query->get();
-        $major=\DB::table('major')->get();
-        $majorC=\DB::table('major_child')->get();
+        $query = $query->paginate(6);
+        $major=\DB::table('major')->paginate(6);
+        $majorC=\DB::table('major_child')->paginate(6);
 
 
         // dd($query);
@@ -139,9 +138,9 @@ class HomeController extends Controller
         ->where('post.id_major_child', '=', $majorC);
 
 
-        $query = $query->get();
-        $major=\DB::table('major')->get();
-        $majorC=\DB::table('major_child')->get();
+        $query = $query->paginate(6);
+        $major=\DB::table('major')->paginate(6);
+        $majorC=\DB::table('major_child')->paginate(6);
 
 
         // dd($query);

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="/client/img/favicon.ico">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
     <!-- CSS here -->
     <link rel="stylesheet" href="/client/css/bootstrap.min.css">
     <link rel="stylesheet" href="/client/css/owl.carousel.min.css">
@@ -144,7 +144,7 @@
                                 <div class="main-menu d-none d-md-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.html">Trang Chủ</a></li>
+                                            <li><a href="/">Trang Chủ</a></li>
                                             <!-- <li><a href="categori.html">Tuyển Sinh</a></li> -->
                                             <!-- <li><a href="about.html">Chương Trình Đào Tạo</a></li> -->
                                             <li><a href="#">Tuyển Sinh <i class="fa-solid fa-angle-right fa-rotate-90 fa-xs"></i></a>
@@ -219,13 +219,15 @@
                             </div>
                             <div class="col-xl-2 col-lg-2 col-md-4">
                                 <div class="header-right-btn f-right d-none d-lg-block">
-                                    <i class="fas fa-search special-tag"></i>
+                                <form action="{{ route('sort_search') }}" method="POST">
+                                    @csrf
+                                    <button class="border border-0 bg-white"><i class="fas fa-search special-tag text-dark"></i></button>
                                     <div class="search-box">
-                                        <form action="{{ route('sort_search') }}" method="POST">
-                                            @csrf
-                                            <input type="text" placeholder="Tìm kiếm ..." name="keyword">
-                                        </form>
+                                        <input type="text" placeholder="Tìm kiếm ..." name="keyword">
+                                            
+                                       
                                     </div>
+                                </form>
                                 </div>
                             </div>
                             <!-- Mobile Menu -->
@@ -1037,34 +1039,33 @@
                                     </div>
                                 </div> --}}
                             </div>
+                            
+                                    <!-- phân trang  -->
+                            
+                                    
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!--Recent Articles End -->
         <!--Start pagination -->
         <div class="pagination-area pb-45 text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="single-wrap d-flex justify-content-center">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-start">
-                                    <li class="page-item"><a class="page-link" href="#"><span
-                                                class="flaticon-arrow roted"></span></a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item"><a class="page-link" href="#"><span
-                                                class="flaticon-arrow right-arrow"></span></a></li>
-                                </ul>
-                            </nav>
-                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="single-wrap d-flex flex-column justify-content-center">
+                        
+                        {{$post_recent->links('pagination::bootstrap-5')}}
+                        
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+        
         <!-- End pagination  -->
     </main>
 
@@ -1220,7 +1221,7 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="./client/js/plugins.js"></script>
     <script src="./client/js/main.js"></script>
-    <script src="https://kit.fontawesome.com/073099d884.js" crossorigin="anonymous"></script>
+   
 
 
 </body>

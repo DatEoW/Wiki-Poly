@@ -144,7 +144,7 @@
                                 <div class="main-menu d-none d-md-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.html">Trang Chủ</a></li>
+                                            <li><a href="/">Trang Chủ</a></li>
                                             <!-- <li><a href="categori.html">Tuyển Sinh</a></li> -->
                                             <!-- <li><a href="about.html">Chương Trình Đào Tạo</a></li> -->
                                             <li><a href="#">Tuyển Sinh <i class="fa-solid fa-angle-right fa-rotate-90 fa-xs"></i></a>
@@ -219,13 +219,15 @@
                             </div>
                             <div class="col-xl-2 col-lg-2 col-md-4">
                                 <div class="header-right-btn f-right d-none d-lg-block">
-                                    <i class="fas fa-search special-tag"></i>
+                                    <form action="{{ route('sort_search') }}" method="POST">
+                                    @csrf
+                                    <button class="border border-0 bg-white"><i class="fas fa-search special-tag text-dark"></i></button>
                                     <div class="search-box">
-                                        <form action="{{ route('sort_search') }}" method="POST">
-                                            @csrf
-                                            <input type="text" placeholder="Tìm kiếm ..." name="keyword">
-                                        </form>
+                                        <input type="text" placeholder="Tìm kiếm ..." name="keyword">
+                                            
+                                       
                                     </div>
+                                </form>
                                 </div>
                             </div>
                             <!-- Mobile Menu -->
@@ -243,8 +245,10 @@
 
 
 
-
+    <main class="my-5">
     @yield('content')
+    </main>                                                
+    
 
     <footer>
         <!-- Footer Start-->

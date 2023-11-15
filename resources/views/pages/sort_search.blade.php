@@ -27,8 +27,8 @@
                     </div>
                 </div>
             </div>
-
-
+            {{$query->links('pagination::bootstrap-5')}}
+            
 
 
 
