@@ -3,6 +3,10 @@
 <h2>Add User</h2>
 <form method="post" >
     {{ csrf_field() }}
+    <div class="form-group" style="padding: 32px; max-width: 50%; border:solid 2px 
+    box-shadow: -1px 0px 10px 12px rgba(204,187,187,0.41);
+    -webkit-box-shadow: -1px 0px 10px 12px rgba(204,187,187,0.41);
+    -moz-box-shadow: -1px 0px 10px 12px rgba(204,187,187,0.41); margin:32px; border-radius : 10px">
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" class="form-control" id="name" name="name">
