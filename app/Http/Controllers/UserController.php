@@ -46,8 +46,8 @@ public function create()
 
             // Tạo mới user với các dữ liệu tương ứng với dữ liệu được gán trong $data
             User::create($data);
-            echo"success create user";
-        }
+            return redirect()->to('/admin/list-user');
+            }
 
 // edit user
         public function edit($id){
@@ -69,7 +69,7 @@ public function create()
     
             // Update user
             User::find($id)->update($data);
-            echo"success update user";
+            return redirect()->to('/admin/list-user');        
         }
 
         // delete user

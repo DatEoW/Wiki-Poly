@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Http\Request;
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('trangtestdangnhap');
     })->name('account');
 });
+
 // check tài khoản admin cấm vào user
 Route::group(['middleware' => 'auth','checkAdminRole'], function () {
     Route::prefix('admin')->group(function () {
@@ -43,7 +45,15 @@ Route::group(['middleware' => 'auth','checkAdminRole'], function () {
         Route::post('edit-post{id}', [PostController::class, 'update_post'])->name('update-post');
         Route::get('delete-post{id}', [PostController::class, 'delete_post'])->name('delete-post');
         Route::get('hidden-post{id}', [PostController::class, 'hidden_post'])->name('hidden-post');
+        //add user
+        Route::get('adduser', [UserController::class,'create']);
+        Route::post('adduser', [UserController::class,'store']);
 
+        //edit delete user
+        Route::get('/user/update/{id}', [UserController::class, 'edit']);
+        Route::post('/user/update/{id}', [UserController::class, 'update']);
+        Route::get('/user/delete/{id}', [UserController::class, 'delete']); 
+        
         //user
 
         Route::get('list-user', [AdminController::class, 'list_user'])->name('list-user');
